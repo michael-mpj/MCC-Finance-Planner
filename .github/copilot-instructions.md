@@ -1,88 +1,78 @@
 # MCC Finance Planner - AI Coding Agent Instructions
 
 ## Project Overview
-MCC Finance Planner is a financial planning application designed to help users manage their personal finances, budget tracking, and financial goal planning. This project is currently in its initial development phase.
+MCC Finance Planner is a financial planning application currently in early development. The project is built on Create React App and includes Vercel Analytics integration.
 
-## Architecture & Design Patterns
+## Current Architecture
 
-### Current State
-- **Minimal Setup**: Repository contains only basic README.md
-- **Future Architecture**: This will be a finance planning application requiring:
-  - User authentication and data security
-  - Financial data management and calculations
-  - Budget tracking and reporting
-  - Goal setting and progress monitoring
+### Technology Stack
+- **Frontend**: React 18.2.0 with Create React App 5.0.1
+- **Testing**: Jest with React Testing Library (@testing-library/react, @testing-library/jest-dom)
+- **Analytics**: Custom Vercel Analytics integration (`src/vitals.js`)
+- **Development**: Docker Compose dev environment (`compose-dev.yaml`)
+- **Package Manager**: pnpm (evidenced by `pnpm-lock.yaml`)
 
-### Expected Technology Stack
-When implementing features, consider these patterns:
-- **Security First**: All financial data must be handled with encryption and secure practices
-- **Data Validation**: Implement strict validation for all financial inputs and calculations
-- **Audit Trail**: Maintain logs of all financial transactions and changes
-- **Responsive Design**: Ensure accessibility across devices for financial management
+### Project Structure
+```
+src/
+├── App.js          # Main React component (currently default CRA template)
+├── index.js        # Entry point with Vercel analytics setup
+├── vitals.js       # Custom Vercel Analytics implementation
+├── App.test.js     # Basic component test
+└── setupTests.js   # Jest configuration
+```
 
 ## Development Workflows
 
 ### Getting Started
-Since this is a new project, when adding code:
-1. Choose appropriate technology stack (suggested: modern web framework with secure backend)
-2. Implement proper project structure with clear separation of concerns
-3. Set up development, testing, and production environments
-4. Configure CI/CD pipeline for automated testing and deployment
+```bash
+pnpm install          # Install dependencies
+pnpm start            # Start development server (port 3000)
+pnpm test             # Run tests in watch mode
+pnpm build            # Create production build
+```
 
-### Financial Application Best Practices
-- **Decimal Precision**: Use appropriate decimal/currency libraries for financial calculations
-- **Input Sanitization**: Validate and sanitize all user inputs, especially financial data
-- **Error Handling**: Implement comprehensive error handling for financial operations
-- **Testing**: Write thorough tests for all financial calculations and business logic
-- **Documentation**: Document all financial formulas and business rules clearly
+### Docker Development
+Use `compose-dev.yaml` for containerized development environment.
 
-## Project-Specific Conventions
+### Analytics Integration
+The project includes custom Vercel Analytics via `src/vitals.js`:
+- Requires `REACT_APP_VERCEL_ANALYTICS_ID` environment variable
+- Automatically tracks Core Web Vitals and page metrics
+- Uses `sendBeacon` API with fallback to fetch
 
-### Naming Conventions
-- Use clear, descriptive names for financial concepts (e.g., `monthlyBudget`, `savingsGoal`)
-- Prefix financial amount variables with currency context when applicable
-- Use consistent terminology for financial operations across the codebase
+## Project-Specific Patterns
 
-### Code Organization
-- Separate financial calculation logic from UI components
-- Create dedicated modules for different financial aspects (budgeting, goals, reporting)
-- Implement proper data models for financial entities
-- Use configuration files for financial constants (tax rates, limits, etc.)
+### Current Implementation
+- **React 18**: Uses legacy `ReactDOM.render()` (consider upgrading to `createRoot()`)
+- **Strict Mode**: Enabled in development for better debugging
+- **Web Vitals**: Custom implementation in `vitals.js` with connection speed detection
+- **Testing**: Standard Jest + RTL setup with custom DOM matchers
 
-### Security Considerations
-- Never log sensitive financial data
-- Implement proper session management
-- Use HTTPS for all communications
-- Follow OWASP guidelines for web application security
-- Consider compliance requirements (PCI DSS, etc.)
+### Upcoming Financial App Requirements
+When implementing finance features:
+- **Decimal Precision**: Use libraries like `decimal.js` or `big.js` for financial calculations
+- **Input Validation**: Implement strict validation for financial inputs
+- **Security**: Handle financial data with encryption and secure practices
+- **Audit Trail**: Log all financial transactions and changes
 
-## Integration Points
+## Key Files & Current Architecture
 
-### Expected External Services
-- Banking APIs for account integration
-- Currency conversion services
-- Tax calculation services
-- Credit score monitoring APIs
-- Financial data aggregation services
+### Essential Files
+- `src/vitals.js` - Custom Vercel Analytics implementation with browser capability detection
+- `src/index.js` - App entry point with analytics integration
+- `package.json` - CRA-based React app with testing library dependencies
+- `compose-dev.yaml` - Docker development environment setup
 
-### Data Flow Patterns
-- Implement proper data validation at API boundaries
-- Use structured logging for financial transactions
-- Implement backup and recovery procedures for financial data
-- Consider real-time vs. batch processing for different financial operations
-
-## Key Files & Directories (Future Structure)
-- `/src/models/` - Financial data models and entities
-- `/src/services/` - Business logic for financial operations
-- `/src/utils/financial.js` - Core financial calculation utilities
-- `/src/security/` - Authentication and authorization modules
-- `/tests/financial/` - Comprehensive tests for financial calculations
-- `/config/` - Environment-specific configuration files
+### Integration Points
+- **Analytics**: Vercel Analytics via custom vitals implementation
+- **Testing**: Jest + React Testing Library for component testing
+- **Build**: React Scripts for development and production builds
+- **Environment**: Docker Compose for dev environment consistency
 
 ## Notes for AI Agents
-- Prioritize data accuracy and security in all financial implementations
-- Always include comprehensive tests for financial calculations
-- Consider edge cases in financial scenarios (negative balances, currency conversion, etc.)
-- Implement proper error handling for financial operations
-- Document all financial business rules and calculations clearly
-- Follow financial industry best practices and compliance requirements
+- This is currently a default CRA template with Vercel Analytics added
+- When adding financial features, prioritize data accuracy and security
+- Follow React best practices and consider upgrading to React 18 concurrent features
+- Maintain the existing testing setup and expand coverage for financial calculations
+- Use the Docker environment for consistent development across team members
