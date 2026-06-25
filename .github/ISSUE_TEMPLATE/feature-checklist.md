@@ -24,7 +24,7 @@ assignees: ''
 
 #### Project Setup
 - [ ] Run `chmod +x setup.sh && ./setup.sh`
-- [ ] Verify dependencies installed (`electron`, `react`, `vite`, `zustand`, `bootstrap`, `firebase`, `xlsx`, etc.)
+- [ ] Verify dependencies installed (`electron`, `react`, `vite`, `zustand`, `bootstrap`, `firebase`, `exceljs`, etc.)
 - [ ] Confirm ESLint + Prettier configs are working (`npm run lint` / `npm run format`)
 
 #### Core App Structure
@@ -60,7 +60,7 @@ assignees: ''
 
 #### Import / Export
 - [ ] Implement **JSON export/import**
-- [ ] Implement **Excel/CSV export/import** with `xlsx`
+- [ ] Implement **Excel/CSV export/import** with `exceljs` (secure alternative to xlsx)
 - [ ] Add **FileSaver.js** for downloads
 - [ ] Add **upload UI** for imports
 

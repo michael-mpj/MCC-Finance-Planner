@@ -146,7 +146,7 @@ interface Transaction {
 ### 📁 File Format Support
 - [ ] **JSON Export/Import** - Native format for backup/restore
 - [ ] **CSV Export/Import** - Spreadsheet compatibility
-- [ ] **Excel Export/Import** - .xlsx format with formatting
+- [ ] **Excel Export/Import** - .xlsx format with formatting using secure ExcelJS library
 - [ ] **OFX Import** - Bank statement import
 - [ ] **QIF Import** - Quicken file format
 

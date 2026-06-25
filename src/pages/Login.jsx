@@ -1,82 +1,156 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const {
+    user,
+    isLoading,
+    authError,
+    loginWithGoogle,
+    loginWithEmail,
+    signInDemo,
+    clearError,
+  } = useAuthStore();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLogin, setIsLogin] = useState(true);
-  const { login, setLoading, isLoading } = useAuthStore();
 
-  const handleSubmit = async (e) => {
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard", { replace: true });
+    }
+  }, [user, navigate]);
+
+  const handleGoogleLogin = async () => {
+    const result = await loginWithGoogle();
+    if (result.success) {
+      navigate("/dashboard", { replace: true });
+    }
+  };
+
+  const handleEmailLogin = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    
-    try {
-      // For demo purposes, simulate login
-      setTimeout(() => {
-        login({ email, id: Date.now() });
-        setLoading(false);
-      }, 1000);
-    } catch (error) {
-      // console.error("Auth error:", error);
-      alert("Authentication failed. Please try again.");
-      setLoading(false);
+    const result = await loginWithEmail(email, password);
+    if (result.success) {
+      navigate("/dashboard", { replace: true });
+    }
+  };
+
+  const handleDemoLogin = async () => {
+    const result = await signInDemo();
+    if (result.success) {
+      navigate("/dashboard", { replace: true });
     }
   };
 
   return (
-    <div className="container">
-      <div className="row justify-content-center" style={{ minHeight: "100vh", alignItems: "center" }}>
-        <div className="col-md-6 col-lg-4">
-          <div className="card shadow">
-            <div className="card-body p-5">
-              <div className="text-center mb-4">
-                <h1 className="h3 mb-3">💰 MCC Finance</h1>
-                <p className="text-muted">
-                  {isLogin ? "Sign in to your account" : "Create a new account"}
-                </p>
-              </div>
-              
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label className="form-label">Email</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
+    <div className="min-vh-100 d-flex align-items-center bg-light">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-md-6 col-lg-5 col-xl-4">
+            <div className="card shadow-lg border-0">
+              <div className="card-body p-5">
+                <div className="text-center mb-4">
+                  <Link to="/" className="text-decoration-none">
+                    <span style={{ fontSize: "3rem" }}>💰</span>
+                    <h2 className="mt-2 mb-3 text-primary fw-bold">MCC Finance Planner</h2>
+                  </Link>
+                  <p className="text-muted">Sign in to manage your finances</p>
                 </div>
-                
-                <div className="mb-4">
-                  <label className="form-label">Password</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
+
+                {authError && (
+                  <div className="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i className="fas fa-exclamation-circle me-2"></i>
+                    {authError}
+                    <button
+                      type="button"
+                      className="btn-close"
+                      onClick={clearError}
+                    ></button>
+                  </div>
+                )}
+
+                <div className="d-grid gap-3">
+                  <button
+                    className="btn btn-outline-primary btn-lg"
+                    onClick={handleGoogleLogin}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <>
+                        <div className="spinner-border spinner-border-sm me-2" role="status">
+                          <span className="visually-hidden">Loading...</span>
+                        </div>
+                        Signing in...
+                      </>
+                    ) : (
+                      <>
+                        <i className="fab fa-google me-2"></i>
+                        Continue with Google
+                      </>
+                    )}
+                  </button>
+
+                  <button
+                    className="btn btn-secondary btn-lg"
+                    onClick={handleDemoLogin}
+                    disabled={isLoading}
+                  >
+                    <i className="fas fa-user me-2"></i>
+                    Continue as Demo
+                  </button>
+
+                  <hr className="my-3" />
+
+                  <form onSubmit={handleEmailLogin}>
+                    <div className="mb-3">
+                      <label htmlFor="email" className="form-label">Email</label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        placeholder="you@example.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="password" className="form-label">Password</label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        id="password"
+                        placeholder="••••••••"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="btn btn-primary w-100"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? "Signing in..." : "Sign In with Email"}
+                    </button>
+                  </form>
                 </div>
-                
-                <button
-                  type="submit"
-                  className="btn btn-primary w-100 mb-3"
-                  disabled={isLoading}
-                >
-                  {isLoading ? "Loading..." : isLogin ? "Sign In" : "Sign Up"}
-                </button>
-              </form>
-              
-              <div className="text-center">
-                <button
-                  type="button"
-                  className="btn btn-link"
-                  onClick={() => setIsLogin(!isLogin)}
-                >
-                  {isLogin ? "Need an account? Sign up" : "Have an account? Sign in"}
-                </button>
+
+                <div className="text-center mt-4">
+                  <small className="text-muted">
+                    Firebase authentication with offline-first local fallback
+                  </small>
+                </div>
+
+                <div className="text-center mt-3">
+                  <Link to="/" className="btn btn-link text-muted">
+                    <i className="fas fa-arrow-left me-2"></i>
+                    Back to Home
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

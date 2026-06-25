@@ -1,0 +1,202 @@
+[
+  {
+    "date": "2025-01-05",
+    "title": "Monthly Salary",
+    "description": "Monthly salary deposit",
+    "category": "Salary",
+    "type": "income",
+    "amount": 5200.00,
+    "note": "Monthly salary deposit",
+    "tags": ["work", "monthly"]
+  },
+  {
+    "date": "2025-01-07",
+    "title": "Grocery Shopping",
+    "description": "Grocery shopping at Whole Foods",
+    "category": "Food & Dining",
+    "type": "expense",
+    "amount": 85.50,
+    "note": "Grocery shopping at Whole Foods",
+    "tags": ["groceries", "food"]
+  },
+  {
+    "date": "2025-01-10",
+    "title": "Electricity Bill",
+    "description": "Electricity bill",
+    "category": "Bills & Utilities",
+    "type": "expense",
+    "amount": 120.00,
+    "note": "Electricity bill",
+    "tags": ["utilities", "monthly"]
+  },
+  {
+    "date": "2025-01-12",
+    "title": "Gas Station",
+    "description": "Gas station fill-up",
+    "category": "Transportation",
+    "type": "expense",
+    "amount": 45.00,
+    "note": "Gas station fill-up",
+    "tags": ["car", "gas"]
+  },
+  {
+    "date": "2025-01-15",
+    "title": "Concert Tickets",
+    "description": "Concert tickets",
+    "category": "Entertainment",
+    "type": "expense",
+    "amount": 120.00,
+    "note": "Concert tickets",
+    "tags": ["fun", "events"]
+  },
+  {
+    "date": "2025-01-18",
+    "title": "Winter Jacket",
+    "description": "Winter jacket from Uniqlo",
+    "category": "Shopping",
+    "type": "expense",
+    "amount": 210.00,
+    "note": "Winter jacket from Uniqlo",
+    "tags": ["clothing", "winter"]
+  },
+  {
+    "date": "2025-01-22",
+    "title": "Pharmacy",
+    "description": "Pharmacy - cold medicine",
+    "category": "Healthcare",
+    "type": "expense",
+    "amount": 65.00,
+    "note": "Pharmacy - cold medicine",
+    "tags": ["health", "medicine"]
+  },
+  {
+    "date": "2025-02-01",
+    "title": "Monthly Salary",
+    "description": "Monthly salary deposit",
+    "category": "Salary",
+    "type": "income",
+    "amount": 5200.00,
+    "note": "Monthly salary deposit",
+    "tags": ["work", "monthly"]
+  },
+  {
+    "date": "2025-02-03",
+    "title": "Weekly Groceries",
+    "description": "Weekly groceries",
+    "category": "Food & Dining",
+    "type": "expense",
+    "amount": 95.00,
+    "note": "Weekly groceries",
+    "tags": ["groceries", "food"]
+  },
+  {
+    "date": "2025-02-05",
+    "title": "Internet and Phone",
+    "description": "Internet and phone bill",
+    "category": "Bills & Utilities",
+    "type": "expense",
+    "amount": 80.00,
+    "note": "Internet and phone bill",
+    "tags": ["utilities", "monthly"]
+  },
+  {
+    "date": "2025-02-08",
+    "title": "Logo Design Project",
+    "description": "Logo design project",
+    "category": "Freelance",
+    "type": "income",
+    "amount": 450.00,
+    "note": "Logo design project",
+    "tags": ["work", "freelance"]
+  },
+  {
+    "date": "2025-02-14",
+    "title": "Movie Night",
+    "description": "Movie night and dinner",
+    "category": "Entertainment",
+    "type": "expense",
+    "amount": 75.00,
+    "note": "Movie night and dinner",
+    "tags": ["fun", "date-night"]
+  },
+  {
+    "date": "2025-02-20",
+    "title": "Uber Rides",
+    "description": "Uber rides",
+    "category": "Transportation",
+    "type": "expense",
+    "amount": 50.00,
+    "note": "Uber rides",
+    "tags": ["car", "rideshare"]
+  },
+  {
+    "date": "2025-03-01",
+    "title": "Monthly Salary",
+    "description": "Monthly salary deposit",
+    "category": "Salary",
+    "type": "income",
+    "amount": 5200.00,
+    "note": "Monthly salary deposit",
+    "tags": ["work", "monthly"]
+  },
+  {
+    "date": "2025-03-04",
+    "title": "Dinner with Friends",
+    "description": "Dinner with friends at Italian restaurant",
+    "category": "Food & Dining",
+    "type": "expense",
+    "amount": 220.00,
+    "note": "Dinner with friends at Italian restaurant",
+    "tags": ["food", "social"]
+  },
+  {
+    "date": "2025-03-06",
+    "title": "Electricity and Water",
+    "description": "Electricity and water bill",
+    "category": "Bills & Utilities",
+    "type": "expense",
+    "amount": 130.00,
+    "note": "Electricity and water bill",
+    "tags": ["utilities", "monthly"]
+  },
+  {
+    "date": "2025-03-10",
+    "title": "Stock Purchase",
+    "description": "Stock purchase - VTI index fund",
+    "category": "Investment",
+    "type": "expense",
+    "amount": 300.00,
+    "note": "Stock purchase - VTI index fund",
+    "tags": ["investing", "stocks"]
+  },
+  {
+    "date": "2025-03-15",
+    "title": "Weekend Trip",
+    "description": "Weekend trip to mountains - hotel and gas",
+    "category": "Travel",
+    "type": "expense",
+    "amount": 450.00,
+    "note": "Weekend trip to mountains - hotel and gas",
+    "tags": ["travel", "vacation"]
+  },
+  {
+    "date": "2025-03-20",
+    "title": "Wireless Headphones",
+    "description": "New wireless headphones",
+    "category": "Shopping",
+    "type": "expense",
+    "amount": 89.99,
+    "note": "New wireless headphones",
+    "tags": ["electronics", "tech"]
+  },
+  {
+    "date": "2025-03-25",
+    "title": "React Course",
+    "description": "Online course - React advanced patterns",
+    "category": "Education",
+    "type": "expense",
+    "amount": 150.00,
+    "note": "Online course - React advanced patterns",
+    "tags": ["learning", "courses"]
+  }
+]

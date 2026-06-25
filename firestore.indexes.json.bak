@@ -1,0 +1,42 @@
+// Backup of firestore.indexes.json created on 2025-09-17
+// The original file contained JavaScript by mistake (likely a paste of a store implementation).
+
+/* Original contents below (truncated for backup) */
+
+import { create } from "zustand";
+import { persist, subscribeWithSelector } from "zustand/middleware";
+
+export const useTransactionStore = create(
+  subscribeWithSelector(
+    persist(
+      (set, get) => ({
+        transactions: [],
+        categories: [
+          "Food & Dining", "Transportation", "Shopping", "Entertainment",
+          "Bills & Utilities", "Healthcare", "Travel", "Education",
+          "Business", "Personal Care", "Gifts & Donations", "Investment",
+          "Salary", "Freelance", "Other Income", "Other Expense"
+        ],
+        isLoading: false,
+        lastSync: null,
+        // ... (rest of file backed up) ...
+      }),
+      {
+        name: "mcc-transactions-storage",
+        partialize: (state) => ({
+          transactions: state.transactions,
+          categories: state.categories,
+          lastSync: state.lastSync
+        })
+      }
+    )
+  )
+);
+
+// Subscribe to transaction changes for real-time updates
+useTransactionStore.subscribe(
+  (state) => state.transactions,
+  (transactions, previousTransactions) => {
+    // ... (subscription handler) ...
+  }
+);

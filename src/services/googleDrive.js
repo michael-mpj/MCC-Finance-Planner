@@ -1,8 +1,8 @@
 import { gapi } from "gapi-script";
 
 export const initGapi = async () => {
-  const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-  const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
+  const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+  const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
   
   return new Promise((resolve, reject) => {
     gapi.load("client:auth2", async () => {
