@@ -55,3 +55,4 @@ coverage/
 # Firebase local
 .firebase/
 .firebaserc
+.env*
