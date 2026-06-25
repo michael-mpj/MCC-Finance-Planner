@@ -3,6 +3,7 @@ packages:
 allowBuilds:
   '@firebase/util': true
   electron: true
+  electron-winstaller: true
   esbuild: true
   protobufjs: true
 minimumReleaseAgeExclude:
