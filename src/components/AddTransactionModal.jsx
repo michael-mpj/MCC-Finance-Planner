@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { useTransactionStore } from "../store/useTransactionStore";
-
-AddTransactionModal.propTypes = {
-  show: PropTypes.bool.isRequired,
-  onHide: PropTypes.func.isRequired,
-};
 
 const AddTransactionModal = ({ show, onHide }) => {
   const { addTransaction, categories } = useTransactionStore();

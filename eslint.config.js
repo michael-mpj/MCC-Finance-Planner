@@ -46,6 +46,7 @@ export default [
       "no-unused-vars": "warn",
       "no-console": "warn",
       "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
     },
     settings: {
       react: {
