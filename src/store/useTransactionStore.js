@@ -13,10 +13,22 @@ export const useTransactionStore = create(
       (set, get) => ({
         transactions: [],
         categories: [
-          "Food & Dining", "Transportation", "Shopping", "Entertainment",
-          "Bills & Utilities", "Healthcare", "Travel", "Education",
-          "Business", "Personal Care", "Gifts & Donations", "Investment",
-          "Salary", "Freelance", "Other Income", "Other Expense"
+          "Food & Dining",
+          "Transportation",
+          "Shopping",
+          "Entertainment",
+          "Bills & Utilities",
+          "Healthcare",
+          "Travel",
+          "Education",
+          "Business",
+          "Personal Care",
+          "Gifts & Donations",
+          "Investment",
+          "Salary",
+          "Freelance",
+          "Other Income",
+          "Other Expense",
         ],
         isLoading: false,
         lastSync: null,
@@ -26,15 +38,15 @@ export const useTransactionStore = create(
           const newTransaction = {
             ...transaction,
             id: transaction.id || `tx_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-            title: transaction.title || transaction.note || transaction.category || 'Untitled',
-            description: transaction.description || transaction.note || '',
+            title: transaction.title || transaction.note || transaction.category || "Untitled",
+            description: transaction.description || transaction.note || "",
             createdAt: transaction.createdAt || new Date().toISOString(),
-            updatedAt: new Date().toISOString()
+            updatedAt: new Date().toISOString(),
           };
 
           set((state) => ({
             transactions: [...state.transactions, newTransaction],
-            lastSync: new Date().toISOString()
+            lastSync: new Date().toISOString(),
           }));
 
           get().syncToFirebase?.(newTransaction, "add");
@@ -43,19 +55,19 @@ export const useTransactionStore = create(
         },
 
         addTransactions: (transactions) => {
-          const newTransactions = transactions.map(tx => ({
+          const newTransactions = transactions.map((tx) => ({
             ...tx,
             id: tx.id || `tx_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-            title: tx.title || tx.note || tx.category || 'Untitled',
-            description: tx.description || tx.note || '',
+            title: tx.title || tx.note || tx.category || "Untitled",
+            description: tx.description || tx.note || "",
             createdAt: tx.createdAt || new Date().toISOString(),
             updatedAt: new Date().toISOString(),
-            imported: true
+            imported: true,
           }));
 
           set((state) => ({
             transactions: [...state.transactions, ...newTransactions],
-            lastSync: new Date().toISOString()
+            lastSync: new Date().toISOString(),
           }));
 
           get().syncToFirebase?.(newTransactions, "batch_add");
@@ -67,16 +79,16 @@ export const useTransactionStore = create(
           const updatedTransaction = {
             ...updates,
             id,
-            title: updates.title || updates.note || updates.category || 'Untitled',
-            description: updates.description || updates.note || '',
-            updatedAt: new Date().toISOString()
+            title: updates.title || updates.note || updates.category || "Untitled",
+            description: updates.description || updates.note || "",
+            updatedAt: new Date().toISOString(),
           };
 
           set((state) => ({
             transactions: state.transactions.map((tx) =>
               tx.id === id ? { ...tx, ...updatedTransaction } : tx
             ),
-            lastSync: new Date().toISOString()
+            lastSync: new Date().toISOString(),
           }));
 
           get().syncToFirebase?.(updatedTransaction, "update");
@@ -87,7 +99,7 @@ export const useTransactionStore = create(
         deleteTransaction: (id) => {
           set((state) => ({
             transactions: state.transactions.filter((tx) => tx.id !== id),
-            lastSync: new Date().toISOString()
+            lastSync: new Date().toISOString(),
           }));
 
           get().syncToFirebase?.({ id }, "delete");
@@ -96,7 +108,7 @@ export const useTransactionStore = create(
         deleteTransactions: (ids) => {
           set((state) => ({
             transactions: state.transactions.filter((tx) => !ids.includes(tx.id)),
-            lastSync: new Date().toISOString()
+            lastSync: new Date().toISOString(),
           }));
 
           get().syncToFirebase?.(ids, "batch_delete");
@@ -105,7 +117,7 @@ export const useTransactionStore = create(
         clearAllTransactions: () => {
           set(() => ({
             transactions: [],
-            lastSync: new Date().toISOString()
+            lastSync: new Date().toISOString(),
           }));
 
           get().syncToFirebase?.([], "clear_all");
@@ -140,10 +152,10 @@ export const useTransactionStore = create(
         getTotalByType: () => {
           const transactions = get().transactions;
           const income = transactions
-            .filter(tx => tx.type === "income")
+            .filter((tx) => tx.type === "income")
             .reduce((sum, tx) => sum + Number(tx.amount), 0);
           const expenses = transactions
-            .filter(tx => tx.type === "expense")
+            .filter((tx) => tx.type === "expense")
             .reduce((sum, tx) => sum + Number(tx.amount), 0);
 
           return { income, expenses, net: income - expenses };
@@ -203,13 +215,13 @@ export const useTransactionStore = create(
 
         addCategory: (category) => {
           set((state) => ({
-            categories: [...new Set([...state.categories, category])]
+            categories: [...new Set([...state.categories, category])],
           }));
         },
 
         removeCategory: (category) => {
           set((state) => ({
-            categories: state.categories.filter(cat => cat !== category)
+            categories: state.categories.filter((cat) => cat !== category),
           }));
         },
 
@@ -219,17 +231,17 @@ export const useTransactionStore = create(
 
         getMonthlyStats: (year, month) => {
           const transactions = get().transactions;
-          const monthlyTx = transactions.filter(tx => {
+          const monthlyTx = transactions.filter((tx) => {
             const txDate = new Date(tx.date);
             return txDate.getFullYear() === year && txDate.getMonth() === month;
           });
 
           const income = monthlyTx
-            .filter(tx => tx.type === "income")
+            .filter((tx) => tx.type === "income")
             .reduce((sum, tx) => sum + Number(tx.amount), 0);
 
           const expenses = monthlyTx
-            .filter(tx => tx.type === "expense")
+            .filter((tx) => tx.type === "expense")
             .reduce((sum, tx) => sum + Number(tx.amount), 0);
 
           return {
@@ -237,17 +249,17 @@ export const useTransactionStore = create(
             expenses,
             net: income - expenses,
             count: monthlyTx.length,
-            transactions: monthlyTx
+            transactions: monthlyTx,
           };
-        }
+        },
       }),
       {
         name: "mcc-transactions-storage",
         partialize: (state) => ({
           transactions: state.transactions,
           categories: state.categories,
-          lastSync: state.lastSync
-        })
+          lastSync: state.lastSync,
+        }),
       }
     )
   )
@@ -260,12 +272,14 @@ useTransactionStore.subscribe(
       // transactions count changed
     }
 
-    globalThis.dispatchEvent(new CustomEvent("transactionsUpdated", {
-      detail: {
-        transactions,
-        previousCount: previousTransactions.length,
-        currentCount: transactions.length
-      }
-    }));
+    globalThis.dispatchEvent(
+      new CustomEvent("transactionsUpdated", {
+        detail: {
+          transactions,
+          previousCount: previousTransactions.length,
+          currentCount: transactions.length,
+        },
+      })
+    );
   }
 );

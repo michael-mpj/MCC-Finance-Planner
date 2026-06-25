@@ -4,15 +4,8 @@ import { useAuthStore } from "../store/useAuthStore";
 
 export default function Login() {
   const navigate = useNavigate();
-  const {
-    user,
-    isLoading,
-    authError,
-    loginWithGoogle,
-    loginWithEmail,
-    signInDemo,
-    clearError,
-  } = useAuthStore();
+  const { user, isLoading, authError, loginWithGoogle, loginWithEmail, signInDemo, clearError } =
+    useAuthStore();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -64,11 +57,7 @@ export default function Login() {
                   <div className="alert alert-danger alert-dismissible fade show" role="alert">
                     <i className="fas fa-exclamation-circle me-2"></i>
                     {authError}
-                    <button
-                      type="button"
-                      className="btn-close"
-                      onClick={clearError}
-                    ></button>
+                    <button type="button" className="btn-close" onClick={clearError}></button>
                   </div>
                 )}
 
@@ -106,7 +95,9 @@ export default function Login() {
 
                   <form onSubmit={handleEmailLogin}>
                     <div className="mb-3">
-                      <label htmlFor="email" className="form-label">Email</label>
+                      <label htmlFor="email" className="form-label">
+                        Email
+                      </label>
                       <input
                         type="email"
                         className="form-control"
@@ -118,7 +109,9 @@ export default function Login() {
                       />
                     </div>
                     <div className="mb-3">
-                      <label htmlFor="password" className="form-label">Password</label>
+                      <label htmlFor="password" className="form-label">
+                        Password
+                      </label>
                       <input
                         type="password"
                         className="form-control"
@@ -129,11 +122,7 @@ export default function Login() {
                         required
                       />
                     </div>
-                    <button
-                      type="submit"
-                      className="btn btn-primary w-100"
-                      disabled={isLoading}
-                    >
+                    <button type="submit" className="btn btn-primary w-100" disabled={isLoading}>
                       {isLoading ? "Signing in..." : "Sign In with Email"}
                     </button>
                   </form>

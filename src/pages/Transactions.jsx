@@ -21,10 +21,7 @@ export default function Transactions() {
               </p>
             </div>
             <div className="d-flex gap-2">
-              <button
-                className="btn btn-primary"
-                onClick={() => setShowAddModal(true)}
-              >
+              <button className="btn btn-primary" onClick={() => setShowAddModal(true)}>
                 <i className="fas fa-plus me-2"></i>
                 Add Transaction
               </button>
@@ -38,8 +35,8 @@ export default function Transactions() {
               <div className="flex-grow-1">
                 <strong>Real-time Updates Active</strong>
                 <p className="mb-0 small">
-                  This table automatically refreshes when transactions are added, imported, or modified.
-                  Changes sync to localStorage and Firebase automatically.
+                  This table automatically refreshes when transactions are added, imported, or
+                  modified. Changes sync to localStorage and Firebase automatically.
                 </p>
               </div>
               <div className="text-end">
@@ -55,10 +52,7 @@ export default function Transactions() {
           <TransactionsTable />
 
           {/* Add Transaction Modal */}
-          <AddTransactionModal
-            show={showAddModal}
-            onHide={() => setShowAddModal(false)}
-          />
+          <AddTransactionModal show={showAddModal} onHide={() => setShowAddModal(false)} />
 
           {/* Integration Info */}
           <div className="row mt-4">

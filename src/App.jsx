@@ -36,7 +36,16 @@ function App() {
         addTransactions(demoTx);
       }
     }
-  }, [isLoading, isAuthenticated, user, initializeFirebaseSync, transactions.length, isDemoMode, firebaseReady, addTransactions]);
+  }, [
+    isLoading,
+    isAuthenticated,
+    user,
+    initializeFirebaseSync,
+    transactions.length,
+    isDemoMode,
+    firebaseReady,
+    addTransactions,
+  ]);
 
   if (isLoading) {
     return (
@@ -59,10 +68,7 @@ function App() {
             path="/"
             element={!user ? <LandingPage /> : <Navigate to="/dashboard" replace />}
           />
-          <Route
-            path="/login"
-            element={!user ? <Login /> : <Navigate to="/dashboard" replace />}
-          />
+          <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" replace />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
 

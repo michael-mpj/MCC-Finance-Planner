@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { useTransactionStore } from "../store/useTransactionStore";
 import { useBudgetStore } from "../store/useBudgetStore";
-import { exportTransactions, importTransactions, exportBudgets, exportFinancialReport, exportYearlyReport } from "../utils/excelUtils";
+import {
+  exportTransactions,
+  importTransactions,
+  exportBudgets,
+  exportFinancialReport,
+  exportYearlyReport,
+} from "../utils/excelUtils";
 import { getDemoTransactions, exportDemoXlsx } from "../utils/demoData";
 
 export default function ImportExport() {
@@ -52,19 +58,19 @@ export default function ImportExport() {
     } catch (error) {
       setImportResult({
         success: false,
-        message: 'Import failed: ' + error.message,
-        errors: [error.message]
+        message: "Import failed: " + error.message,
+        errors: [error.message],
       });
     } finally {
       setIsImporting(false);
       // Clear file input
-      event.target.value = '';
+      event.target.value = "";
     }
   };
 
   const handleExportTransactions = async () => {
     if (transactions.length === 0) {
-      setExportResult({ success: false, message: 'No transactions to export' });
+      setExportResult({ success: false, message: "No transactions to export" });
       return;
     }
 
@@ -75,7 +81,7 @@ export default function ImportExport() {
       const result = await exportTransactions(transactions);
       setExportResult(result);
     } catch (error) {
-      setExportResult({ success: false, message: 'Export failed: ' + error.message });
+      setExportResult({ success: false, message: "Export failed: " + error.message });
     } finally {
       setIsExporting(false);
     }
@@ -83,7 +89,7 @@ export default function ImportExport() {
 
   const handleExportBudgets = async () => {
     if (budgets.length === 0) {
-      setExportResult({ success: false, message: 'No budgets to export' });
+      setExportResult({ success: false, message: "No budgets to export" });
       return;
     }
 
@@ -94,7 +100,7 @@ export default function ImportExport() {
       const result = await exportBudgets(budgets);
       setExportResult(result);
     } catch (error) {
-      setExportResult({ success: false, message: 'Budget export failed: ' + error.message });
+      setExportResult({ success: false, message: "Budget export failed: " + error.message });
     } finally {
       setIsExporting(false);
     }
@@ -106,11 +112,11 @@ export default function ImportExport() {
 
     try {
       const totalIncome = transactions
-        .filter(tx => tx.type === 'income')
+        .filter((tx) => tx.type === "income")
         .reduce((sum, tx) => sum + Number(tx.amount), 0);
-      
+
       const totalExpenses = transactions
-        .filter(tx => tx.type === 'expense')
+        .filter((tx) => tx.type === "expense")
         .reduce((sum, tx) => sum + Number(tx.amount), 0);
 
       const reportData = {
@@ -121,14 +127,14 @@ export default function ImportExport() {
           totalExpenses,
           netAmount: totalIncome - totalExpenses,
           transactionCount: transactions.length,
-          budgetCount: budgets.length
-        }
+          budgetCount: budgets.length,
+        },
       };
 
       const result = await exportFinancialReport(reportData);
       setExportResult(result);
     } catch (error) {
-      setExportResult({ success: false, message: 'Report export failed: ' + error.message });
+      setExportResult({ success: false, message: "Report export failed: " + error.message });
     } finally {
       setIsExporting(false);
     }
@@ -141,7 +147,7 @@ export default function ImportExport() {
       const result = await exportYearlyReport(transactions);
       setExportResult(result);
     } catch (error) {
-      setExportResult({ success: false, message: 'Yearly export failed: ' + error.message });
+      setExportResult({ success: false, message: "Yearly export failed: " + error.message });
     } finally {
       setIsExporting(false);
     }
@@ -154,15 +160,21 @@ export default function ImportExport() {
           <div className="card">
             <div className="card-header">
               <h2 className="mb-0">📁 Import & Export</h2>
-              <p className="text-muted mb-0">Manage your financial data with secure Excel import/export</p>
+              <p className="text-muted mb-0">
+                Manage your financial data with secure Excel import/export
+              </p>
             </div>
             <div className="card-body">
               {/* Status Messages */}
               {importResult && (
-                <div className={`alert ${importResult.success ? 'alert-success' : 'alert-danger'} alert-dismissible fade show`}>
+                <div
+                  className={`alert ${importResult.success ? "alert-success" : "alert-danger"} alert-dismissible fade show`}
+                >
                   <h6 className="mb-2">
-                    <i className={`fas ${importResult.success ? 'fa-check-circle' : 'fa-exclamation-circle'} me-2`}></i>
-                    Import {importResult.success ? 'Successful' : 'Failed'}
+                    <i
+                      className={`fas ${importResult.success ? "fa-check-circle" : "fa-exclamation-circle"} me-2`}
+                    ></i>
+                    Import {importResult.success ? "Successful" : "Failed"}
                   </h6>
                   <p className="mb-2">{importResult.message}</p>
                   {importResult.errors && importResult.errors.length > 0 && (
@@ -178,21 +190,25 @@ export default function ImportExport() {
                       </ul>
                     </div>
                   )}
-                  <button 
-                    type="button" 
-                    className="btn-close" 
+                  <button
+                    type="button"
+                    className="btn-close"
                     onClick={() => setImportResult(null)}
                   ></button>
                 </div>
               )}
 
               {exportResult && (
-                <div className={`alert ${exportResult.success ? 'alert-success' : 'alert-danger'} alert-dismissible fade show`}>
-                  <i className={`fas ${exportResult.success ? 'fa-download' : 'fa-exclamation-circle'} me-2`}></i>
+                <div
+                  className={`alert ${exportResult.success ? "alert-success" : "alert-danger"} alert-dismissible fade show`}
+                >
+                  <i
+                    className={`fas ${exportResult.success ? "fa-download" : "fa-exclamation-circle"} me-2`}
+                  ></i>
                   {exportResult.message}
-                  <button 
-                    type="button" 
-                    className="btn-close" 
+                  <button
+                    type="button"
+                    className="btn-close"
                     onClick={() => setExportResult(null)}
                   ></button>
                 </div>
@@ -211,11 +227,14 @@ export default function ImportExport() {
                     <div className="card-body">
                       <h6>Import Transactions from Excel</h6>
                       <p className="text-muted small">
-                        Upload an Excel file (.xlsx) with columns: ID 	Date 	Title 	Description	Category 	Type 	Amount 	Actions
+                        Upload an Excel file (.xlsx) with columns: ID Date Title Description
+                        Category Type Amount Actions
                       </p>
-                      
+
                       <div className="mb-3">
-                        <label htmlFor="importFile" className="form-label">Select Excel File</label>
+                        <label htmlFor="importFile" className="form-label">
+                          Select Excel File
+                        </label>
                         <input
                           type="file"
                           className="form-control"
@@ -228,7 +247,10 @@ export default function ImportExport() {
 
                       {isImporting && (
                         <div className="text-center">
-                          <div className="spinner-border spinner-border-sm me-2" role="status"></div>
+                          <div
+                            className="spinner-border spinner-border-sm me-2"
+                            role="status"
+                          ></div>
                           Processing file...
                         </div>
                       )}
@@ -239,7 +261,7 @@ export default function ImportExport() {
                           <li>Excel file (.xlsx or .xls)</li>
                           <li>First row should be headers</li>
                           <li>Required columns: Date, Category, Type, Amount</li>
-                           <li>Type must be &apos;income&apos; or &apos;expense&apos;</li>
+                          <li>Type must be &apos;income&apos; or &apos;expense&apos;</li>
                         </ul>
                       </div>
                     </div>
@@ -278,7 +300,9 @@ export default function ImportExport() {
                         <button
                           className="btn btn-success"
                           onClick={handleExportFinancialReport}
-                          disabled={isExporting || (transactions.length === 0 && budgets.length === 0)}
+                          disabled={
+                            isExporting || (transactions.length === 0 && budgets.length === 0)
+                          }
                         >
                           <i className="fas fa-chart-line me-2"></i>
                           Export Complete Report
@@ -296,7 +320,10 @@ export default function ImportExport() {
 
                       {isExporting && (
                         <div className="text-center mt-3">
-                          <div className="spinner-border spinner-border-sm me-2" role="status"></div>
+                          <div
+                            className="spinner-border spinner-border-sm me-2"
+                            role="status"
+                          ></div>
                           Generating file...
                         </div>
                       )}
@@ -332,7 +359,11 @@ export default function ImportExport() {
                         <div className="col-md-3">
                           <div className="border rounded p-3">
                             <h4 className="text-info">
-                              ${transactions.filter(tx => tx.type === 'income').reduce((sum, tx) => sum + Number(tx.amount), 0).toFixed(2)}
+                              $
+                              {transactions
+                                .filter((tx) => tx.type === "income")
+                                .reduce((sum, tx) => sum + Number(tx.amount), 0)
+                                .toFixed(2)}
                             </h4>
                             <small className="text-muted">Total Income</small>
                           </div>
@@ -340,7 +371,11 @@ export default function ImportExport() {
                         <div className="col-md-3">
                           <div className="border rounded p-3">
                             <h4 className="text-warning">
-                              ${transactions.filter(tx => tx.type === 'expense').reduce((sum, tx) => sum + Number(tx.amount), 0).toFixed(2)}
+                              $
+                              {transactions
+                                .filter((tx) => tx.type === "expense")
+                                .reduce((sum, tx) => sum + Number(tx.amount), 0)
+                                .toFixed(2)}
                             </h4>
                             <small className="text-muted">Total Expenses</small>
                           </div>
@@ -363,8 +398,8 @@ export default function ImportExport() {
                     </div>
                     <div className="card-body">
                       <p className="text-muted">
-                        Quickly populate the app with sample transactions to explore features,
-                        or download a ready-made Excel file for import.
+                        Quickly populate the app with sample transactions to explore features, or
+                        download a ready-made Excel file for import.
                       </p>
                       <div className="d-flex gap-2 flex-wrap">
                         <button

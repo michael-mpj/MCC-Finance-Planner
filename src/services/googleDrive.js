@@ -3,7 +3,7 @@ import { gapi } from "gapi-script";
 export const initGapi = async () => {
   const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
   const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
-  
+
   return new Promise((resolve, reject) => {
     gapi.load("client:auth2", async () => {
       try {
@@ -27,10 +27,9 @@ export const uploadToGoogleDrive = async (fileName, fileContent) => {
     name: fileName,
     mimeType: "application/json",
   };
-  
-  const accessToken = gapi.auth2.getAuthInstance()
-    .currentUser.get().getAuthResponse().access_token;
-    
+
+  const accessToken = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;
+
   const form = new FormData();
   form.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
   form.append("file", file);
@@ -43,6 +42,6 @@ export const uploadToGoogleDrive = async (fileName, fileContent) => {
       body: form,
     }
   );
-  
+
   return response.json();
 };

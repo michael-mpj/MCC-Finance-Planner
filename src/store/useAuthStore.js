@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import {
   isFirebaseConfigured,
   signInWithGoogle,
@@ -7,7 +7,7 @@ import {
   signInDemo,
   logOut,
   listenToAuthChanges,
-} from '../services/firebase';
+} from "../services/firebase";
 
 const useAuthStore = create(
   persist(
@@ -29,7 +29,7 @@ const useAuthStore = create(
                 const normalizedUser = {
                   id: firebaseUser.uid,
                   uid: firebaseUser.uid,
-                  name: firebaseUser.displayName || firebaseUser.email?.split('@')[0] || 'User',
+                  name: firebaseUser.displayName || firebaseUser.email?.split("@")[0] || "User",
                   email: firebaseUser.email,
                   photoURL: firebaseUser.photoURL,
                   isAnonymous: firebaseUser.isAnonymous,
@@ -42,13 +42,13 @@ const useAuthStore = create(
                   firebaseReady: true,
                 });
               } else {
-                const storedTransactions = localStorage.getItem('finance-transactions');
-                const storedBudgets = localStorage.getItem('finance-budgets');
+                const storedTransactions = localStorage.getItem("finance-transactions");
+                const storedBudgets = localStorage.getItem("finance-budgets");
                 const hasUserData = storedTransactions || storedBudgets;
 
                 if (hasUserData) {
                   set({
-                    user: { id: 'local-user', name: 'Local User', email: 'privacy@localhost' },
+                    user: { id: "local-user", name: "Local User", email: "privacy@localhost" },
                     isAuthenticated: true,
                     isDemoMode: true,
                     isLoading: false,
@@ -68,13 +68,13 @@ const useAuthStore = create(
 
             get().setFirebaseUnsubscribe?.(unsubscribe);
           } else {
-            const storedTransactions = localStorage.getItem('finance-transactions');
-            const storedBudgets = localStorage.getItem('finance-budgets');
+            const storedTransactions = localStorage.getItem("finance-transactions");
+            const storedBudgets = localStorage.getItem("finance-budgets");
             const hasUserData = storedTransactions || storedBudgets;
 
             if (hasUserData) {
               set({
-                user: { id: 'local-user', name: 'Local User', email: 'privacy@localhost' },
+                user: { id: "local-user", name: "Local User", email: "privacy@localhost" },
                 isAuthenticated: true,
                 isDemoMode: true,
                 isLoading: false,
@@ -91,13 +91,13 @@ const useAuthStore = create(
             }
           }
         } catch {
-          const storedTransactions = localStorage.getItem('finance-transactions');
-          const storedBudgets = localStorage.getItem('finance-budgets');
+          const storedTransactions = localStorage.getItem("finance-transactions");
+          const storedBudgets = localStorage.getItem("finance-budgets");
           const hasUserData = storedTransactions || storedBudgets;
 
           if (hasUserData) {
             set({
-              user: { id: 'local-user', name: 'Local User', email: 'privacy@localhost' },
+              user: { id: "local-user", name: "Local User", email: "privacy@localhost" },
               isAuthenticated: true,
               isDemoMode: true,
               isLoading: false,
@@ -119,7 +119,7 @@ const useAuthStore = create(
         set({ isLoading: true, error: null, authError: null });
         try {
           if (!isFirebaseConfigured()) {
-            throw new Error('Firebase is not configured');
+            throw new Error("Firebase is not configured");
           }
           const result = await signInWithGoogle();
           const normalizedUser = {
@@ -139,7 +139,7 @@ const useAuthStore = create(
           });
           return { success: true, user: normalizedUser };
         } catch {
-          const errorMessage = 'Google sign-in failed';
+          const errorMessage = "Google sign-in failed";
           set({
             error: errorMessage,
             authError: errorMessage,
@@ -153,7 +153,7 @@ const useAuthStore = create(
         set({ isLoading: true, error: null, authError: null });
         try {
           if (!isFirebaseConfigured()) {
-            throw new Error('Firebase is not configured');
+            throw new Error("Firebase is not configured");
           }
           const result = await signInWithEmail(email, password);
           const normalizedUser = {
@@ -173,7 +173,7 @@ const useAuthStore = create(
           });
           return { success: true, user: normalizedUser };
         } catch {
-          const errorMessage = 'Email sign-in failed';
+          const errorMessage = "Email sign-in failed";
           set({
             error: errorMessage,
             authError: errorMessage,
@@ -188,9 +188,9 @@ const useAuthStore = create(
         try {
           if (!isFirebaseConfigured()) {
             const localUser = {
-              id: 'local-user',
-              name: 'Local User',
-              email: 'privacy@localhost',
+              id: "local-user",
+              name: "Local User",
+              email: "privacy@localhost",
             };
             set({
               user: localUser,
@@ -205,8 +205,8 @@ const useAuthStore = create(
           const normalizedUser = {
             id: result.user.uid,
             uid: result.user.uid,
-            name: 'Demo User',
-            email: result.user.email || 'demo@localhost',
+            name: "Demo User",
+            email: result.user.email || "demo@localhost",
             isAnonymous: true,
           };
           set({
@@ -219,9 +219,9 @@ const useAuthStore = create(
           return { success: true, user: normalizedUser };
         } catch {
           const localUser = {
-            id: 'local-user',
-            name: 'Local User',
-            email: 'privacy@localhost',
+            id: "local-user",
+            name: "Local User",
+            email: "privacy@localhost",
           };
           set({
             user: localUser,
@@ -238,7 +238,7 @@ const useAuthStore = create(
         if (credentials.email && credentials.password) {
           return get().loginWithEmail(credentials.email, credentials.password);
         }
-        const errorMessage = 'Invalid credentials';
+        const errorMessage = "Invalid credentials";
         set({ error: errorMessage, authError: errorMessage, isLoading: false });
         return { success: false, error: errorMessage };
       },
@@ -272,7 +272,7 @@ const useAuthStore = create(
       },
     }),
     {
-      name: 'finance-auth-storage',
+      name: "finance-auth-storage",
       partialize: (state) => ({
         user: state.user,
         isAuthenticated: state.isAuthenticated,

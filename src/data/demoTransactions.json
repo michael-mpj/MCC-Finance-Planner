@@ -5,7 +5,7 @@
     "description": "Monthly salary deposit",
     "category": "Salary",
     "type": "income",
-    "amount": 5200.00,
+    "amount": 5200.0,
     "note": "Monthly salary deposit",
     "tags": ["work", "monthly"]
   },
@@ -15,7 +15,7 @@
     "description": "Grocery shopping at Whole Foods",
     "category": "Food & Dining",
     "type": "expense",
-    "amount": 85.50,
+    "amount": 85.5,
     "note": "Grocery shopping at Whole Foods",
     "tags": ["groceries", "food"]
   },
@@ -25,7 +25,7 @@
     "description": "Electricity bill",
     "category": "Bills & Utilities",
     "type": "expense",
-    "amount": 120.00,
+    "amount": 120.0,
     "note": "Electricity bill",
     "tags": ["utilities", "monthly"]
   },
@@ -35,7 +35,7 @@
     "description": "Gas station fill-up",
     "category": "Transportation",
     "type": "expense",
-    "amount": 45.00,
+    "amount": 45.0,
     "note": "Gas station fill-up",
     "tags": ["car", "gas"]
   },
@@ -45,7 +45,7 @@
     "description": "Concert tickets",
     "category": "Entertainment",
     "type": "expense",
-    "amount": 120.00,
+    "amount": 120.0,
     "note": "Concert tickets",
     "tags": ["fun", "events"]
   },
@@ -55,7 +55,7 @@
     "description": "Winter jacket from Uniqlo",
     "category": "Shopping",
     "type": "expense",
-    "amount": 210.00,
+    "amount": 210.0,
     "note": "Winter jacket from Uniqlo",
     "tags": ["clothing", "winter"]
   },
@@ -65,7 +65,7 @@
     "description": "Pharmacy - cold medicine",
     "category": "Healthcare",
     "type": "expense",
-    "amount": 65.00,
+    "amount": 65.0,
     "note": "Pharmacy - cold medicine",
     "tags": ["health", "medicine"]
   },
@@ -75,7 +75,7 @@
     "description": "Monthly salary deposit",
     "category": "Salary",
     "type": "income",
-    "amount": 5200.00,
+    "amount": 5200.0,
     "note": "Monthly salary deposit",
     "tags": ["work", "monthly"]
   },
@@ -85,7 +85,7 @@
     "description": "Weekly groceries",
     "category": "Food & Dining",
     "type": "expense",
-    "amount": 95.00,
+    "amount": 95.0,
     "note": "Weekly groceries",
     "tags": ["groceries", "food"]
   },
@@ -95,7 +95,7 @@
     "description": "Internet and phone bill",
     "category": "Bills & Utilities",
     "type": "expense",
-    "amount": 80.00,
+    "amount": 80.0,
     "note": "Internet and phone bill",
     "tags": ["utilities", "monthly"]
   },
@@ -105,7 +105,7 @@
     "description": "Logo design project",
     "category": "Freelance",
     "type": "income",
-    "amount": 450.00,
+    "amount": 450.0,
     "note": "Logo design project",
     "tags": ["work", "freelance"]
   },
@@ -115,7 +115,7 @@
     "description": "Movie night and dinner",
     "category": "Entertainment",
     "type": "expense",
-    "amount": 75.00,
+    "amount": 75.0,
     "note": "Movie night and dinner",
     "tags": ["fun", "date-night"]
   },
@@ -125,7 +125,7 @@
     "description": "Uber rides",
     "category": "Transportation",
     "type": "expense",
-    "amount": 50.00,
+    "amount": 50.0,
     "note": "Uber rides",
     "tags": ["car", "rideshare"]
   },
@@ -135,7 +135,7 @@
     "description": "Monthly salary deposit",
     "category": "Salary",
     "type": "income",
-    "amount": 5200.00,
+    "amount": 5200.0,
     "note": "Monthly salary deposit",
     "tags": ["work", "monthly"]
   },
@@ -145,7 +145,7 @@
     "description": "Dinner with friends at Italian restaurant",
     "category": "Food & Dining",
     "type": "expense",
-    "amount": 220.00,
+    "amount": 220.0,
     "note": "Dinner with friends at Italian restaurant",
     "tags": ["food", "social"]
   },
@@ -155,7 +155,7 @@
     "description": "Electricity and water bill",
     "category": "Bills & Utilities",
     "type": "expense",
-    "amount": 130.00,
+    "amount": 130.0,
     "note": "Electricity and water bill",
     "tags": ["utilities", "monthly"]
   },
@@ -165,7 +165,7 @@
     "description": "Stock purchase - VTI index fund",
     "category": "Investment",
     "type": "expense",
-    "amount": 300.00,
+    "amount": 300.0,
     "note": "Stock purchase - VTI index fund",
     "tags": ["investing", "stocks"]
   },
@@ -175,7 +175,7 @@
     "description": "Weekend trip to mountains - hotel and gas",
     "category": "Travel",
     "type": "expense",
-    "amount": 450.00,
+    "amount": 450.0,
     "note": "Weekend trip to mountains - hotel and gas",
     "tags": ["travel", "vacation"]
   },
@@ -195,7 +195,7 @@
     "description": "Online course - React advanced patterns",
     "category": "Education",
     "type": "expense",
-    "amount": 150.00,
+    "amount": 150.0,
     "note": "Online course - React advanced patterns",
     "tags": ["learning", "courses"]
   }

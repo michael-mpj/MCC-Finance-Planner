@@ -20,12 +20,15 @@ export default function Budget() {
   });
 
   const budgetWithSpent = useMemo(() => {
-    return budgets.map(budget => {
+    return budgets.map((budget) => {
       const spent = transactions
-        .filter(tx => tx.type === "expense" && tx.category === budget.category)
+        .filter((tx) => tx.type === "expense" && tx.category === budget.category)
         .reduce((sum, tx) => sum + Number(tx.amount), 0);
       const remaining = Number(budget.planned) - spent;
-      const percent = Number(budget.planned) > 0 ? Math.min(100, Math.round((spent / Number(budget.planned)) * 100)) : 0;
+      const percent =
+        Number(budget.planned) > 0
+          ? Math.min(100, Math.round((spent / Number(budget.planned)) * 100))
+          : 0;
       return { ...budget, spent, remaining, percent };
     });
   }, [budgets, transactions]);
@@ -140,7 +143,7 @@ export default function Budget() {
                         required
                       />
                       <datalist id="categories">
-                        {categories.map(category => (
+                        {categories.map((category) => (
                           <option key={category} value={category} />
                         ))}
                       </datalist>
@@ -215,9 +218,7 @@ export default function Budget() {
               <div className="card-body text-center py-5">
                 <i className="fas fa-piggy-bank fa-3x text-muted mb-3"></i>
                 <h5 className="text-muted">No budgets yet</h5>
-                <p className="text-muted">
-                  Create budgets to track your spending by category.
-                </p>
+                <p className="text-muted">Create budgets to track your spending by category.</p>
                 <button className="btn btn-primary mt-2" onClick={() => setShowForm(true)}>
                   <i className="fas fa-plus me-2"></i>Create Your First Budget
                 </button>
@@ -225,9 +226,13 @@ export default function Budget() {
             </div>
           ) : (
             <div className="row g-3">
-              {budgetWithSpent.map(budget => {
+              {budgetWithSpent.map((budget) => {
                 const isOver = budget.remaining < 0;
-                const progressColor = isOver ? "bg-danger" : budget.percent >= 80 ? "bg-warning" : "bg-success";
+                const progressColor = isOver
+                  ? "bg-danger"
+                  : budget.percent >= 80
+                    ? "bg-warning"
+                    : "bg-success";
                 return (
                   <div key={budget.id} className="col-md-6 col-lg-4">
                     <div className="card h-100">
@@ -257,7 +262,9 @@ export default function Budget() {
 
                         <div className="mb-2">
                           <div className="d-flex justify-content-between small">
-                            <span>Spent: <strong>{formatCurrency(budget.spent)}</strong></span>
+                            <span>
+                              Spent: <strong>{formatCurrency(budget.spent)}</strong>
+                            </span>
                             <span>Planned: {formatCurrency(Number(budget.planned))}</span>
                           </div>
                           <div className="progress" style={{ height: "8px" }}>

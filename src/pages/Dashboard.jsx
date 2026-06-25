@@ -2,21 +2,43 @@ import React, { useMemo } from "react";
 import { useTransactionStore } from "../store/useTransactionStore";
 import { useBudgetStore } from "../store/useBudgetStore";
 import {
-  PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis,
-  Tooltip, Legend, CartesianGrid
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  CartesianGrid,
 } from "recharts";
 
-const COLORS = ["#667eea", "#764ba2", "#f093fb", "#f5576c", "#4facfe", "#43e97b", "#fa709a", "#fee140", "#30cfd0", "#a8edea", "#ff9a9e", "#f6d365"];
+const COLORS = [
+  "#667eea",
+  "#764ba2",
+  "#f093fb",
+  "#f5576c",
+  "#4facfe",
+  "#43e97b",
+  "#fa709a",
+  "#fee140",
+  "#30cfd0",
+  "#a8edea",
+  "#ff9a9e",
+  "#f6d365",
+];
 
 export default function Dashboard() {
   const transactions = useTransactionStore((state) => state.transactions);
 
   const summary = useMemo(() => {
     const income = transactions
-      .filter(tx => tx.type === "income")
+      .filter((tx) => tx.type === "income")
       .reduce((sum, tx) => sum + Number(tx.amount), 0);
     const expenses = transactions
-      .filter(tx => tx.type === "expense")
+      .filter((tx) => tx.type === "expense")
       .reduce((sum, tx) => sum + Number(tx.amount), 0);
     return { income, expenses, net: income - expenses, count: transactions.length };
   }, [transactions]);
@@ -29,16 +51,18 @@ export default function Dashboard() {
 
   const categoryData = useMemo(() => {
     const map = {};
-    transactions.forEach(tx => {
+    transactions.forEach((tx) => {
       if (!map[tx.category]) map[tx.category] = 0;
       map[tx.category] += Number(tx.amount);
     });
-    return Object.entries(map).map(([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value);
+    return Object.entries(map)
+      .map(([name, value]) => ({ name, value }))
+      .sort((a, b) => b.value - a.value);
   }, [transactions]);
 
   const monthlyData = useMemo(() => {
     const months = {};
-    transactions.forEach(tx => {
+    transactions.forEach((tx) => {
       const d = new Date(tx.date);
       const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
       if (!months[key]) months[key] = { income: 0, expenses: 0 };
@@ -53,9 +77,9 @@ export default function Dashboard() {
 
   const budgets = useBudgetStore((state) => state.budgets);
   const budgetWarnings = useMemo(() => {
-    return budgets.filter(budget => {
+    return budgets.filter((budget) => {
       const spent = transactions
-        .filter(tx => tx.type === "expense" && tx.category === budget.category)
+        .filter((tx) => tx.type === "expense" && tx.category === budget.category)
         .reduce((sum, tx) => sum + Number(tx.amount), 0);
       return spent >= Number(budget.planned);
     });
@@ -132,9 +156,10 @@ export default function Dashboard() {
                 <i className="fas fa-exclamation-triangle me-2"></i>Budget Alerts
               </h5>
               <ul className="mb-0">
-                {budgetWarnings.map(b => (
+                {budgetWarnings.map((b) => (
                   <li key={b.id}>
-                    <strong>{b.category}</strong>: You&apos;ve reached your budget of {formatCurrency(Number(b.planned))}
+                    <strong>{b.category}</strong>: You&apos;ve reached your budget of{" "}
+                    {formatCurrency(Number(b.planned))}
                   </li>
                 ))}
               </ul>
@@ -231,11 +256,15 @@ export default function Dashboard() {
                       </tr>
                     </thead>
                     <tbody>
-                      {recentTransactions.map(tx => (
+                      {recentTransactions.map((tx) => (
                         <tr key={tx.id}>
                           <td>
                             <small className="text-muted">
-                              {new Date(tx.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                              {new Date(tx.date).toLocaleDateString("en-US", {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              })}
                             </small>
                           </td>
                           <td className="fw-medium">{tx.title || tx.note || tx.category}</td>
@@ -243,11 +272,15 @@ export default function Dashboard() {
                             <span className="badge bg-light text-dark">{tx.category}</span>
                           </td>
                           <td>
-                            <span className={`badge ${tx.type === "income" ? "bg-success" : "bg-danger"}`}>
+                            <span
+                              className={`badge ${tx.type === "income" ? "bg-success" : "bg-danger"}`}
+                            >
                               {tx.type}
                             </span>
                           </td>
-                          <td className={`text-end fw-bold ${tx.type === "income" ? "text-success" : "text-danger"}`}>
+                          <td
+                            className={`text-end fw-bold ${tx.type === "income" ? "text-success" : "text-danger"}`}
+                          >
                             {formatCurrency(Number(tx.amount))}
                           </td>
                         </tr>
@@ -256,7 +289,9 @@ export default function Dashboard() {
                   </table>
                 </div>
               ) : (
-                <div className="text-center py-4 text-muted">No transactions yet. Add your first transaction!</div>
+                <div className="text-center py-4 text-muted">
+                  No transactions yet. Add your first transaction!
+                </div>
               )}
             </div>
           </div>

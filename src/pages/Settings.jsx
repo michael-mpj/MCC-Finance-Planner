@@ -29,7 +29,7 @@ export default function Settings() {
   const handleClearData = () => {
     clearAllTransactions();
     useBudgetStore.getState().deleteBudget = () => {};
-    budgets.forEach(b => useBudgetStore.getState().deleteBudget(b.id));
+    budgets.forEach((b) => useBudgetStore.getState().deleteBudget(b.id));
     storage.setSettings({});
     setSettings({});
     setShowConfirmClear(false);
@@ -169,7 +169,9 @@ export default function Settings() {
                   ) : (
                     <div>
                       <span className="badge bg-secondary ms-2">Not Configured</span>
-                      <small className="d-block text-muted">Add Firebase env vars to enable sync</small>
+                      <small className="d-block text-muted">
+                        Add Firebase env vars to enable sync
+                      </small>
                     </div>
                   )}
                 </div>
@@ -241,7 +243,8 @@ export default function Settings() {
                       <i className="fas fa-info-circle fa-2x text-info mb-2"></i>
                       <h6>Storage Info</h6>
                       <p className="small text-muted">
-                        Transactions: {transactions.length}<br />
+                        Transactions: {transactions.length}
+                        <br />
                         Budgets: {budgets.length}
                       </p>
                     </div>
@@ -253,7 +256,8 @@ export default function Settings() {
                       <i className="fas fa-shield-alt fa-2x text-success mb-2"></i>
                       <h6>Security</h6>
                       <p className="small text-muted">
-                        Data stored locally and securely.<br />
+                        Data stored locally and securely.
+                        <br />
                         No data sent externally without sync.
                       </p>
                     </div>
@@ -267,7 +271,11 @@ export default function Settings() {
 
       {/* Confirmation Modal */}
       {showConfirmClear && (
-        <div className="modal fade show d-block" tabIndex="-1" style={{ backgroundColor: "rgba(0,0,0,0.5)" }}>
+        <div
+          className="modal fade show d-block"
+          tabIndex="-1"
+          style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+        >
           <div className="modal-dialog modal-sm">
             <div className="modal-content">
               <div className="modal-header">
@@ -279,7 +287,10 @@ export default function Settings() {
                 ></button>
               </div>
               <div className="modal-body">
-                <p>Are you sure you want to delete all transactions and budgets? This action cannot be undone.</p>
+                <p>
+                  Are you sure you want to delete all transactions and budgets? This action cannot
+                  be undone.
+                </p>
               </div>
               <div className="modal-footer">
                 <button

@@ -13,7 +13,7 @@ export function getGoals() {
 
 export function saveGoal(goal) {
   const goals = getGoals();
-  const existing = goals.find(g => g.id === goal.id);
+  const existing = goals.find((g) => g.id === goal.id);
   if (existing) {
     Object.assign(existing, goal);
   } else {
@@ -24,14 +24,14 @@ export function saveGoal(goal) {
 }
 
 export function deleteGoal(id) {
-  const goals = getGoals().filter(g => g.id !== id);
+  const goals = getGoals().filter((g) => g.id !== id);
   localStorage.setItem(GOALS_STORAGE_KEY, JSON.stringify(goals));
   return goals;
 }
 
 export function updateGoalProgress(id, currentAmount) {
   const goals = getGoals();
-  const goal = goals.find(g => g.id === id);
+  const goal = goals.find((g) => g.id === id);
   if (goal) {
     goal.currentAmount = Number(currentAmount);
     goal.updatedAt = new Date().toISOString();
@@ -60,7 +60,9 @@ export default function Goals() {
   const totalCurrent = goals.reduce((sum, g) => sum + Number(g.currentAmount), 0);
   const overallProgress = totalTarget > 0 ? Math.round((totalCurrent / totalTarget) * 100) : 0;
 
-  const completedGoals = goals.filter(g => Number(g.currentAmount) >= Number(g.targetAmount)).length;
+  const completedGoals = goals.filter(
+    (g) => Number(g.currentAmount) >= Number(g.targetAmount)
+  ).length;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -74,13 +76,23 @@ export default function Goals() {
       deadline: formData.deadline || "",
       category: formData.category,
       priority: formData.priority,
-      createdAt: editingId ? goals.find(g => g.id === editingId)?.createdAt : new Date().toISOString(),
+      createdAt: editingId
+        ? goals.find((g) => g.id === editingId)?.createdAt
+        : new Date().toISOString(),
     };
 
     saveGoal(data);
     refreshGoals();
 
-    setFormData({ title: "", description: "", targetAmount: "", currentAmount: "", deadline: "", category: "savings", priority: "medium" });
+    setFormData({
+      title: "",
+      description: "",
+      targetAmount: "",
+      currentAmount: "",
+      deadline: "",
+      category: "savings",
+      priority: "medium",
+    });
     setShowForm(false);
     setEditingId(null);
   };
@@ -240,7 +252,9 @@ export default function Goals() {
                           min="0"
                           className="form-control"
                           value={formData.targetAmount}
-                          onChange={(e) => setFormData({ ...formData, targetAmount: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, targetAmount: e.target.value })
+                          }
                           required
                         />
                       </div>
@@ -255,7 +269,9 @@ export default function Goals() {
                           min="0"
                           className="form-control"
                           value={formData.currentAmount}
-                          onChange={(e) => setFormData({ ...formData, currentAmount: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, currentAmount: e.target.value })
+                          }
                         />
                       </div>
                     </div>
@@ -291,7 +307,15 @@ export default function Goals() {
                           onClick={() => {
                             setShowForm(false);
                             setEditingId(null);
-                            setFormData({ title: "", description: "", targetAmount: "", currentAmount: "", deadline: "", category: "savings", priority: "medium" });
+                            setFormData({
+                              title: "",
+                              description: "",
+                              targetAmount: "",
+                              currentAmount: "",
+                              deadline: "",
+                              category: "savings",
+                              priority: "medium",
+                            });
                           }}
                         >
                           Cancel
@@ -328,10 +352,14 @@ export default function Goals() {
         </div>
       ) : (
         <div className="row g-3">
-          {goals.map(goal => {
-            const percent = Number(goal.targetAmount) > 0
-              ? Math.min(100, Math.round((Number(goal.currentAmount) / Number(goal.targetAmount)) * 100))
-              : 0;
+          {goals.map((goal) => {
+            const percent =
+              Number(goal.targetAmount) > 0
+                ? Math.min(
+                    100,
+                    Math.round((Number(goal.currentAmount) / Number(goal.targetAmount)) * 100)
+                  )
+                : 0;
             const isCompleted = percent >= 100;
             return (
               <div key={goal.id} className="col-md-6 col-lg-4">
@@ -340,15 +368,23 @@ export default function Goals() {
                     <div className="d-flex justify-content-between align-items-start mb-2">
                       <div>
                         <h5 className="card-title mb-0">{goal.title}</h5>
-                        <span className={`badge ${priorityBadge[goal.priority] || "bg-secondary"} mt-1`}>
+                        <span
+                          className={`badge ${priorityBadge[goal.priority] || "bg-secondary"} mt-1`}
+                        >
                           {goal.priority} priority
                         </span>
                       </div>
                       <div className="btn-group btn-group-sm">
-                        <button className="btn btn-outline-primary" onClick={() => handleEdit(goal)}>
+                        <button
+                          className="btn btn-outline-primary"
+                          onClick={() => handleEdit(goal)}
+                        >
                           <i className="fas fa-edit"></i>
                         </button>
-                        <button className="btn btn-outline-danger" onClick={() => handleDelete(goal.id)}>
+                        <button
+                          className="btn btn-outline-danger"
+                          onClick={() => handleDelete(goal.id)}
+                        >
                           <i className="fas fa-trash"></i>
                         </button>
                       </div>
@@ -361,7 +397,10 @@ export default function Goals() {
                     <div className="mb-2">
                       <div className="d-flex justify-content-between small">
                         <span>Progress</span>
-                        <span>{formatCurrency(Number(goal.currentAmount))} / {formatCurrency(Number(goal.targetAmount))}</span>
+                        <span>
+                          {formatCurrency(Number(goal.currentAmount))} /{" "}
+                          {formatCurrency(Number(goal.targetAmount))}
+                        </span>
                       </div>
                       <div className="progress" style={{ height: "10px" }}>
                         <div
@@ -376,7 +415,9 @@ export default function Goals() {
 
                     <div className="d-flex justify-content-between align-items-center">
                       <small className="text-muted">
-                        {goal.deadline ? `Due: ${new Date(goal.deadline).toLocaleDateString()}` : "No deadline"}
+                        {goal.deadline
+                          ? `Due: ${new Date(goal.deadline).toLocaleDateString()}`
+                          : "No deadline"}
                       </small>
                       {isCompleted ? (
                         <span className="badge bg-success">Completed!</span>
@@ -384,7 +425,10 @@ export default function Goals() {
                         <button
                           className="btn btn-sm btn-outline-success"
                           onClick={() => {
-                            const amt = prompt("Update progress amount:", Number(goal.currentAmount));
+                            const amt = prompt(
+                              "Update progress amount:",
+                              Number(goal.currentAmount)
+                            );
                             if (amt !== null && !isNaN(Number(amt))) {
                               handleProgressUpdate(goal.id, Number(amt));
                             }

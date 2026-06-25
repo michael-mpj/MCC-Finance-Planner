@@ -29,13 +29,19 @@ const LandingPage = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <a className="nav-link" href="#features">Features</a>
+                <a className="nav-link" href="#features">
+                  Features
+                </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#screenshots">Screenshots</a>
+                <a className="nav-link" href="#screenshots">
+                  Screenshots
+                </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#download">Download</a>
+                <a className="nav-link" href="#download">
+                  Download
+                </a>
               </li>
               <li className="nav-item">
                 <Link className="btn btn-primary ms-2" to="/login">
@@ -48,23 +54,30 @@ const LandingPage = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="hero-section bg-gradient text-white py-5" style={{ paddingTop: '120px', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
+      <section
+        className="hero-section bg-gradient text-white py-5"
+        style={{
+          paddingTop: "120px",
+          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        }}
+      >
         <div className="container text-center">
           <div className="row align-items-center min-vh-100">
             <div className="col-lg-6 mx-auto">
               <div className="hero-logo mb-4">
-                <span style={{ fontSize: '4rem' }}>💰</span>
+                <span style={{ fontSize: "4rem" }}>💰</span>
               </div>
               <h1 className="display-4 fw-bold mb-4">
-                Track Your Money.<br />
+                Track Your Money.
+                <br />
                 <span className="text-warning">Stay in Control.</span>
               </h1>
               <p className="lead mb-5">
-                Simple, powerful, and secure personal finance management. 
-                Track expenses, manage budgets, and achieve your financial goals 
-                with our cross-platform desktop and web application.
+                Simple, powerful, and secure personal finance management. Track expenses, manage
+                budgets, and achieve your financial goals with our cross-platform desktop and web
+                application.
               </p>
-              
+
               {/* Download Buttons */}
               <div className="download-buttons mb-4">
                 <div className="row g-3 justify-content-center">
@@ -93,7 +106,7 @@ const LandingPage = () => {
                   </Link>
                 </div>
               </div>
-              
+
               <p className="text-light">
                 <small>Free • Open Source • Cross-Platform</small>
               </p>
@@ -109,93 +122,93 @@ const LandingPage = () => {
             <h2 className="display-5 fw-bold">Why Choose MCC Finance Planner?</h2>
             <p className="lead text-muted">Everything you need to manage your personal finances</p>
           </div>
-          
+
           <div className="row g-4">
             <div className="col-md-6 col-lg-4">
               <div className="card h-100 border-0 shadow-sm">
                 <div className="card-body text-center p-4">
                   <div className="feature-icon mb-3">
-                    <span style={{ fontSize: '3rem' }}>💰</span>
+                    <span style={{ fontSize: "3rem" }}>💰</span>
                   </div>
                   <h5 className="card-title">Track Income & Expenses</h5>
                   <p className="card-text text-muted">
-                    Easily categorize and monitor all your financial transactions 
-                    with our intuitive interface.
+                    Easily categorize and monitor all your financial transactions with our intuitive
+                    interface.
                   </p>
                 </div>
               </div>
             </div>
-            
+
             <div className="col-md-6 col-lg-4">
               <div className="card h-100 border-0 shadow-sm">
                 <div className="card-body text-center p-4">
                   <div className="feature-icon mb-3">
-                    <span style={{ fontSize: '3rem' }}>📊</span>
+                    <span style={{ fontSize: "3rem" }}>📊</span>
                   </div>
                   <h5 className="card-title">Visual Reports & Insights</h5>
                   <p className="card-text text-muted">
-                    Beautiful charts and detailed reports help you understand 
-                    your spending patterns and financial trends.
+                    Beautiful charts and detailed reports help you understand your spending patterns
+                    and financial trends.
                   </p>
                 </div>
               </div>
             </div>
-            
+
             <div className="col-md-6 col-lg-4">
               <div className="card h-100 border-0 shadow-sm">
                 <div className="card-body text-center p-4">
                   <div className="feature-icon mb-3">
-                    <span style={{ fontSize: '3rem' }}>🔄</span>
+                    <span style={{ fontSize: "3rem" }}>🔄</span>
                   </div>
                   <h5 className="card-title">Import/Export Data</h5>
                   <p className="card-text text-muted">
-                    Support for Excel, CSV, and JSON formats. Easily migrate 
-                    from other financial apps or create backups.
+                    Support for Excel, CSV, and JSON formats. Easily migrate from other financial
+                    apps or create backups.
                   </p>
                 </div>
               </div>
             </div>
-            
+
             <div className="col-md-6 col-lg-4">
               <div className="card h-100 border-0 shadow-sm">
                 <div className="card-body text-center p-4">
                   <div className="feature-icon mb-3">
-                    <span style={{ fontSize: '3rem' }}>☁️</span>
+                    <span style={{ fontSize: "3rem" }}>☁️</span>
                   </div>
                   <h5 className="card-title">Cloud Sync</h5>
                   <p className="card-text text-muted">
-                    Secure Firebase integration keeps your data synchronized 
-                    across all your devices automatically.
+                    Secure Firebase integration keeps your data synchronized across all your devices
+                    automatically.
                   </p>
                 </div>
               </div>
             </div>
-            
+
             <div className="col-md-6 col-lg-4">
               <div className="card h-100 border-0 shadow-sm">
                 <div className="card-body text-center p-4">
                   <div className="feature-icon mb-3">
-                    <span style={{ fontSize: '3rem' }}>🔒</span>
+                    <span style={{ fontSize: "3rem" }}>🔒</span>
                   </div>
                   <h5 className="card-title">Secure & Private</h5>
                   <p className="card-text text-muted">
-                    Your financial data is encrypted and isolated per user. 
-                    We never see or sell your personal information.
+                    Your financial data is encrypted and isolated per user. We never see or sell
+                    your personal information.
                   </p>
                 </div>
               </div>
             </div>
-            
+
             <div className="col-md-6 col-lg-4">
               <div className="card h-100 border-0 shadow-sm">
                 <div className="card-body text-center p-4">
                   <div className="feature-icon mb-3">
-                    <span style={{ fontSize: '3rem' }}>🌙</span>
+                    <span style={{ fontSize: "3rem" }}>🌙</span>
                   </div>
                   <h5 className="card-title">Dark/Light Mode</h5>
                   <p className="card-text text-muted">
-                    Choose between beautiful dark and light themes that 
-                    adapt to your preferences and time of day.
+                    Choose between beautiful dark and light themes that adapt to your preferences
+                    and time of day.
                   </p>
                 </div>
               </div>
@@ -211,15 +224,20 @@ const LandingPage = () => {
             <h2 className="display-5 fw-bold">See It In Action</h2>
             <p className="lead text-muted">Preview the clean, intuitive interface</p>
           </div>
-          
+
           <div className="row g-4">
             <div className="col-lg-4">
               <div className="card border-0 shadow">
                 <div className="card-body p-0">
-                  <div className="screenshot-placeholder bg-gradient text-white d-flex align-items-center justify-content-center" 
-                       style={{ height: '300px', background: 'linear-gradient(45deg, #667eea, #764ba2)' }}>
+                  <div
+                    className="screenshot-placeholder bg-gradient text-white d-flex align-items-center justify-content-center"
+                    style={{
+                      height: "300px",
+                      background: "linear-gradient(45deg, #667eea, #764ba2)",
+                    }}
+                  >
                     <div className="text-center">
-                      <span style={{ fontSize: '4rem' }}>📊</span>
+                      <span style={{ fontSize: "4rem" }}>📊</span>
                       <h5 className="mt-2">Dashboard</h5>
                       <p className="small">Balance overview & recent transactions</p>
                     </div>
@@ -230,14 +248,19 @@ const LandingPage = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="col-lg-4">
               <div className="card border-0 shadow">
                 <div className="card-body p-0">
-                  <div className="screenshot-placeholder bg-gradient text-white d-flex align-items-center justify-content-center" 
-                       style={{ height: '300px', background: 'linear-gradient(45deg, #f093fb, #f5576c)' }}>
+                  <div
+                    className="screenshot-placeholder bg-gradient text-white d-flex align-items-center justify-content-center"
+                    style={{
+                      height: "300px",
+                      background: "linear-gradient(45deg, #f093fb, #f5576c)",
+                    }}
+                  >
                     <div className="text-center">
-                      <span style={{ fontSize: '4rem' }}>📈</span>
+                      <span style={{ fontSize: "4rem" }}>📈</span>
                       <h5 className="mt-2">Reports</h5>
                       <p className="small">Charts & analytics</p>
                     </div>
@@ -248,14 +271,19 @@ const LandingPage = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="col-lg-4">
               <div className="card border-0 shadow">
                 <div className="card-body p-0">
-                  <div className="screenshot-placeholder bg-gradient text-white d-flex align-items-center justify-content-center" 
-                       style={{ height: '300px', background: 'linear-gradient(45deg, #4facfe, #00f2fe)' }}>
+                  <div
+                    className="screenshot-placeholder bg-gradient text-white d-flex align-items-center justify-content-center"
+                    style={{
+                      height: "300px",
+                      background: "linear-gradient(45deg, #4facfe, #00f2fe)",
+                    }}
+                  >
                     <div className="text-center">
-                      <span style={{ fontSize: '4rem' }}>💳</span>
+                      <span style={{ fontSize: "4rem" }}>💳</span>
                       <h5 className="mt-2">Transactions</h5>
                       <p className="small">Easy expense tracking</p>
                     </div>
@@ -279,48 +307,57 @@ const LandingPage = () => {
               <div className="row g-4">
                 <div className="col-sm-6">
                   <div className="text-center">
-                    <span style={{ fontSize: '2.5rem' }}>📱</span>
+                    <span style={{ fontSize: "2.5rem" }}>📱</span>
                     <h5 className="mt-2">Cross-Platform</h5>
                     <p className="small">Works on Windows, macOS, Linux, and web browsers</p>
                   </div>
                 </div>
                 <div className="col-sm-6">
                   <div className="text-center">
-                    <span style={{ fontSize: '2.5rem' }}>⚡</span>
+                    <span style={{ fontSize: "2.5rem" }}>⚡</span>
                     <h5 className="mt-2">Lightning Fast</h5>
                     <p className="small">Offline-first design with cloud sync when online</p>
                   </div>
                 </div>
                 <div className="col-sm-6">
                   <div className="text-center">
-                    <span style={{ fontSize: '2.5rem' }}>🎨</span>
+                    <span style={{ fontSize: "2.5rem" }}>🎨</span>
                     <h5 className="mt-2">Beautiful UI</h5>
                     <p className="small">Clean, modern interface that&apos;s joy to use daily</p>
                   </div>
                 </div>
                 <div className="col-sm-6">
                   <div className="text-center">
-                    <span style={{ fontSize: '2.5rem' }}>🔓</span>
+                    <span style={{ fontSize: "2.5rem" }}>🔓</span>
                     <h5 className="mt-2">Open Source</h5>
                     <p className="small">Transparent, community-driven development</p>
                   </div>
                 </div>
               </div>
             </div>
-            
+
             <div className="col-lg-6">
               <div className="bg-white text-dark rounded p-4 shadow">
                 <h5 className="fw-bold">What Users Say</h5>
                 <div className="testimonial mb-3">
-                   <p className="fst-italic">&quot;Finally, a finance app that doesn&apos;t feel overwhelming. The clean interface helps me actually stay on top of my expenses!&quot;</p>
+                  <p className="fst-italic">
+                    &quot;Finally, a finance app that doesn&apos;t feel overwhelming. The clean
+                    interface helps me actually stay on top of my expenses!&quot;
+                  </p>
                   <small className="text-muted">— Sarah M., Freelancer</small>
                 </div>
                 <div className="testimonial mb-3">
-                   <p className="fst-italic">&quot;Love the cross-platform support. I can track expenses on my laptop and check balances on my phone seamlessly.&quot;</p>
+                  <p className="fst-italic">
+                    &quot;Love the cross-platform support. I can track expenses on my laptop and
+                    check balances on my phone seamlessly.&quot;
+                  </p>
                   <small className="text-muted">— David L., Software Engineer</small>
                 </div>
                 <div className="testimonial">
-                   <p className="fst-italic">&quot;The Excel import feature saved me hours when migrating from my old spreadsheet system.&quot;</p>
+                  <p className="fst-italic">
+                    &quot;The Excel import feature saved me hours when migrating from my old
+                    spreadsheet system.&quot;
+                  </p>
                   <small className="text-muted">— Emma R., Small Business Owner</small>
                 </div>
               </div>
@@ -333,8 +370,10 @@ const LandingPage = () => {
       <section id="download" className="py-5 bg-light">
         <div className="container text-center">
           <h2 className="display-5 fw-bold mb-4">Ready to Take Control of Your Finances?</h2>
-          <p className="lead mb-5">Download MCC Finance Planner and start your journey to better financial health today.</p>
-          
+          <p className="lead mb-5">
+            Download MCC Finance Planner and start your journey to better financial health today.
+          </p>
+
           <div className="row g-3 justify-content-center mb-4">
             <div className="col-auto">
               <button className="btn btn-primary btn-lg px-5">
@@ -361,17 +400,20 @@ const LandingPage = () => {
               </button>
             </div>
           </div>
-          
+
           <div className="mb-4">
             <Link to="/login" className="btn btn-outline-primary btn-lg me-3">
               🌐 Try Web Version
             </Link>
-            <a href="https://github.com/michael-mpj/MCC-Finance-Planner" className="btn btn-outline-secondary btn-lg">
+            <a
+              href="https://github.com/michael-mpj/MCC-Finance-Planner"
+              className="btn btn-outline-secondary btn-lg"
+            >
               <i className="fab fa-github me-2"></i>
               View Source Code
             </a>
           </div>
-          
+
           <p className="text-muted">
             <small>Version 0.2.0 • Free & Open Source • Available Now</small>
           </p>
@@ -393,17 +435,50 @@ const LandingPage = () => {
                 <div className="col-sm-6">
                   <h6>Product</h6>
                   <ul className="list-unstyled">
-                    <li><a href="#features" className="text-muted text-decoration-none">Features</a></li>
-                    <li><a href="#download" className="text-muted text-decoration-none">Download</a></li>
-                    <li><Link to="/login" className="text-muted text-decoration-none">Try Online</Link></li>
+                    <li>
+                      <a href="#features" className="text-muted text-decoration-none">
+                        Features
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#download" className="text-muted text-decoration-none">
+                        Download
+                      </a>
+                    </li>
+                    <li>
+                      <Link to="/login" className="text-muted text-decoration-none">
+                        Try Online
+                      </Link>
+                    </li>
                   </ul>
                 </div>
                 <div className="col-sm-6">
                   <h6>Support</h6>
                   <ul className="list-unstyled">
-                    <li><a href="https://github.com/michael-mpj/MCC-Finance-Planner/issues" className="text-muted text-decoration-none">Report Bug</a></li>
-                    <li><a href="https://github.com/michael-mpj/MCC-Finance-Planner" className="text-muted text-decoration-none">GitHub</a></li>
-                    <li><a href="https://github.com/michael-mpj/MCC-Finance-Planner/wiki" className="text-muted text-decoration-none">Documentation</a></li>
+                    <li>
+                      <a
+                        href="https://github.com/michael-mpj/MCC-Finance-Planner/issues"
+                        className="text-muted text-decoration-none"
+                      >
+                        Report Bug
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://github.com/michael-mpj/MCC-Finance-Planner"
+                        className="text-muted text-decoration-none"
+                      >
+                        GitHub
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://github.com/michael-mpj/MCC-Finance-Planner/wiki"
+                        className="text-muted text-decoration-none"
+                      >
+                        Documentation
+                      </a>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -412,14 +487,21 @@ const LandingPage = () => {
           <hr className="my-4" />
           <div className="row align-items-center">
             <div className="col-md-6">
-              <p className="mb-0 text-muted">
-                © 2025 MCC Finance Planner. Open Source Software.
-              </p>
+              <p className="mb-0 text-muted">© 2025 MCC Finance Planner. Open Source Software.</p>
             </div>
             <div className="col-md-6 text-md-end">
-              <Link to="/privacy" className="text-muted text-decoration-none me-3">Privacy Policy</Link>
-              <Link to="/terms" className="text-muted text-decoration-none me-3">Terms of Service</Link>
-              <a href="https://github.com/michael-mpj/MCC-Finance-Planner/issues" className="text-muted text-decoration-none">Contact</a>
+              <Link to="/privacy" className="text-muted text-decoration-none me-3">
+                Privacy Policy
+              </Link>
+              <Link to="/terms" className="text-muted text-decoration-none me-3">
+                Terms of Service
+              </Link>
+              <a
+                href="https://github.com/michael-mpj/MCC-Finance-Planner/issues"
+                className="text-muted text-decoration-none"
+              >
+                Contact
+              </a>
             </div>
           </div>
         </div>

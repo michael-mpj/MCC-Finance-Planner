@@ -161,10 +161,7 @@ export const saveTransactionsToFirebase = async (userId, transactions) => {
 export const getTransactionsFromFirebase = async (userId) => {
   const db = getDbInstance();
   if (!db) return [];
-  const q = query(
-    collection(db, "users", userId, "transactions"),
-    orderBy("date", "desc")
-  );
+  const q = query(collection(db, "users", userId, "transactions"), orderBy("date", "desc"));
   const snapshot = await getDocs(q);
   return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 };
@@ -179,10 +176,7 @@ export const deleteTransactionFromFirebase = async (userId, transactionId) => {
 export const listenToTransactions = (userId, callback) => {
   const db = getDbInstance();
   if (!db) return () => {};
-  const q = query(
-    collection(db, "users", userId, "transactions"),
-    orderBy("date", "desc")
-  );
+  const q = query(collection(db, "users", userId, "transactions"), orderBy("date", "desc"));
   return onSnapshot(q, (snapshot) => {
     const transactions = snapshot.docs.map((doc) => ({
       id: doc.id,

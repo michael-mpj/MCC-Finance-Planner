@@ -5,6 +5,7 @@ import babelPlugin from "@rolldown/plugin-babel";
 import path from "path";
 
 export default defineConfig({
+  base: "/MCC-Finance-Planner/",
   plugins: [
     babelPlugin({
       babelOptions: {

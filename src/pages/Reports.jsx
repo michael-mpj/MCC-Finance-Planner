@@ -1,16 +1,50 @@
 import React, { useState, useMemo } from "react";
 import { useTransactionStore } from "../store/useTransactionStore";
 import {
-  BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid,
-  PieChart, Pie, Cell, ResponsiveContainer, LineChart, Line
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  CartesianGrid,
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  LineChart,
+  Line,
 } from "recharts";
 import { exportFinancialReport, exportYearlyReport } from "../utils/excelUtils";
 
-const COLORS = ["#667eea", "#764ba2", "#f093fb", "#f5576c", "#4facfe", "#43e97b", "#fa709a", "#fee140", "#30cfd0", "#a8edea", "#ff9a9e", "#f6d365"];
+const COLORS = [
+  "#667eea",
+  "#764ba2",
+  "#f093fb",
+  "#f5576c",
+  "#4facfe",
+  "#43e97b",
+  "#fa709a",
+  "#fee140",
+  "#30cfd0",
+  "#a8edea",
+  "#ff9a9e",
+  "#f6d365",
+];
 
 const MONTH_NAMES = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 export default function Reports() {
@@ -25,19 +59,19 @@ export default function Reports() {
   const filteredTransactions = useMemo(() => {
     let filtered = [...transactions];
     if (selectedMonth !== null) {
-      filtered = filtered.filter(tx => {
+      filtered = filtered.filter((tx) => {
         const d = new Date(tx.date);
         return d.getFullYear() === selectedYear && d.getMonth() === selectedMonth;
       });
     } else {
-      filtered = filtered.filter(tx => new Date(tx.date).getFullYear() === selectedYear);
+      filtered = filtered.filter((tx) => new Date(tx.date).getFullYear() === selectedYear);
     }
     return filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
   }, [transactions, selectedYear, selectedMonth]);
 
   const categoryData = useMemo(() => {
     const map = {};
-    filteredTransactions.forEach(tx => {
+    filteredTransactions.forEach((tx) => {
       if (!map[tx.category]) map[tx.category] = 0;
       map[tx.category] += Number(tx.amount);
     });
@@ -49,7 +83,7 @@ export default function Reports() {
 
   const monthlyData = useMemo(() => {
     const months = {};
-    filteredTransactions.forEach(tx => {
+    filteredTransactions.forEach((tx) => {
       const d = new Date(tx.date);
       const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
       if (!months[key]) months[key] = { income: 0, expenses: 0, date: key };
@@ -60,19 +94,21 @@ export default function Reports() {
   }, [filteredTransactions]);
 
   const totalIncome = filteredTransactions
-    .filter(tx => tx.type === "income")
+    .filter((tx) => tx.type === "income")
     .reduce((sum, tx) => sum + Number(tx.amount), 0);
 
   const totalExpenses = filteredTransactions
-    .filter(tx => tx.type === "expense")
+    .filter((tx) => tx.type === "expense")
     .reduce((sum, tx) => sum + Number(tx.amount), 0);
 
   const topExpenses = useMemo(() => {
     const map = {};
-    filteredTransactions.filter(tx => tx.type === "expense").forEach(tx => {
-      if (!map[tx.category]) map[tx.category] = 0;
-      map[tx.category] += Number(tx.amount);
-    });
+    filteredTransactions
+      .filter((tx) => tx.type === "expense")
+      .forEach((tx) => {
+        if (!map[tx.category]) map[tx.category] = 0;
+        map[tx.category] += Number(tx.amount);
+      });
     return Object.entries(map)
       .map(([name, amount]) => ({ name, amount }))
       .sort((a, b) => b.amount - a.amount)
@@ -95,8 +131,8 @@ export default function Reports() {
     return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(amount);
   };
 
-  const handlePrevYear = () => setSelectedYear(y => y - 1);
-  const handleNextYear = () => setSelectedYear(y => Math.min(y + 1, currentYear));
+  const handlePrevYear = () => setSelectedYear((y) => y - 1);
+  const handleNextYear = () => setSelectedYear((y) => Math.min(y + 1, currentYear));
   const handleMonthClick = (index) => setSelectedMonth(index);
   const handleShowAll = () => setSelectedMonth(null);
 
@@ -116,7 +152,11 @@ export default function Reports() {
       <div className="row mb-4">
         <div className="col-md-3">
           <label className="form-label">Report Type</label>
-          <select className="form-select" value={reportType} onChange={(e) => setReportType(e.target.value)}>
+          <select
+            className="form-select"
+            value={reportType}
+            onChange={(e) => setReportType(e.target.value)}
+          >
             <option value="overview">Overview</option>
             <option value="income">Income Analysis</option>
             <option value="expenses">Expense Analysis</option>
@@ -124,10 +164,18 @@ export default function Reports() {
         </div>
         <div className="col-md-3 d-flex align-items-end">
           <div className="d-grid gap-2 w-100">
-            <button className="btn btn-outline-success" onClick={handleExportCurrent} disabled={filteredTransactions.length === 0}>
+            <button
+              className="btn btn-outline-success"
+              onClick={handleExportCurrent}
+              disabled={filteredTransactions.length === 0}
+            >
               <i className="fas fa-file-excel me-2"></i>Export Current View
             </button>
-            <button className="btn btn-outline-primary" onClick={handleExportYearly} disabled={transactions.length === 0}>
+            <button
+              className="btn btn-outline-primary"
+              onClick={handleExportYearly}
+              disabled={transactions.length === 0}
+            >
               <i className="fas fa-calendar-alt me-2"></i>Export Yearly Excel
             </button>
           </div>
@@ -153,9 +201,15 @@ export default function Reports() {
           </div>
         </div>
         <div className="col-md-4">
-          <div className={`card ${totalIncome - totalExpenses >= 0 ? "border-success" : "border-danger"}`}>
+          <div
+            className={`card ${totalIncome - totalExpenses >= 0 ? "border-success" : "border-danger"}`}
+          >
             <div className="card-body text-center">
-              <h5 className={`card-title ${totalIncome - totalExpenses >= 0 ? "text-success" : "text-danger"}`}>Net</h5>
+              <h5
+                className={`card-title ${totalIncome - totalExpenses >= 0 ? "text-success" : "text-danger"}`}
+              >
+                Net
+              </h5>
               <h4 className={totalIncome - totalExpenses >= 0 ? "text-success" : "text-danger"}>
                 {formatCurrency(totalIncome - totalExpenses)}
               </h4>
@@ -202,7 +256,9 @@ export default function Reports() {
         <div className={reportType === "overview" ? "col-md-6" : "col-md-12"}>
           <div className="card h-100">
             <div className="card-header">
-              <h6 className="mb-0">{reportType === "income" ? "Income Trend" : "Income vs Expenses Trend"}</h6>
+              <h6 className="mb-0">
+                {reportType === "income" ? "Income Trend" : "Income vs Expenses Trend"}
+              </h6>
             </div>
             <div className="card-body">
               {monthlyData.length > 0 ? (
@@ -214,7 +270,13 @@ export default function Reports() {
                       <YAxis />
                       <Tooltip formatter={(value) => formatCurrency(value)} />
                       <Legend />
-                      <Line type="monotone" dataKey="income" stroke="#28a745" strokeWidth={2} name="Income" />
+                      <Line
+                        type="monotone"
+                        dataKey="income"
+                        stroke="#28a745"
+                        strokeWidth={2}
+                        name="Income"
+                      />
                     </LineChart>
                   ) : (
                     <BarChart data={monthlyData}>
@@ -264,7 +326,9 @@ export default function Reports() {
                                 <span className="badge bg-light text-dark me-2">#{idx + 1}</span>
                                 {item.name}
                               </td>
-                              <td className="text-end fw-bold text-danger">{formatCurrency(item.amount)}</td>
+                              <td className="text-end fw-bold text-danger">
+                                {formatCurrency(item.amount)}
+                              </td>
                               <td>
                                 <div className="progress" style={{ height: "8px" }}>
                                   <div
@@ -281,7 +345,9 @@ export default function Reports() {
                     </table>
                   </div>
                 ) : (
-                  <p className="text-muted text-center py-3">No expense data for the selected period</p>
+                  <p className="text-muted text-center py-3">
+                    No expense data for the selected period
+                  </p>
                 )}
               </div>
             </div>
@@ -294,10 +360,7 @@ export default function Reports() {
         <div className="col-12">
           <div className="card">
             <div className="card-footer d-flex flex-wrap justify-content-between align-items-center gap-2">
-              <button
-                className="btn btn-outline-secondary"
-                onClick={handlePrevYear}
-              >
+              <button className="btn btn-outline-secondary" onClick={handlePrevYear}>
                 <i className="fas fa-chevron-left me-1"></i> {selectedYear - 1}
               </button>
 
