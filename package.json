@@ -32,6 +32,7 @@
   "devDependencies": {
     "@eslint/js": "^9.39.4",
     "@vitejs/plugin-react": "^6.0.3",
+    "baseline-browser-mapping": "^2.10.38",
     "concurrently": "^9.0.0",
     "electron": "^42.5.0",
     "electron-builder": "^26.15.3",

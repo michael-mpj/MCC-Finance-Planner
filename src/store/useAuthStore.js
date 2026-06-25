@@ -138,8 +138,8 @@ const useAuthStore = create(
             firebaseReady: true,
           });
           return { success: true, user: normalizedUser };
-        } catch {
-          const errorMessage = "Google sign-in failed";
+        } catch (error) {
+          const errorMessage = error?.message || String(error) || "Google sign-in failed";
           set({
             error: errorMessage,
             authError: errorMessage,
