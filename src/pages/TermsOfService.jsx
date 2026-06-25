@@ -31,9 +31,9 @@ const TermsOfService = () => {
               
               <h3>Description of Service</h3>
               <p>
-                MCC Finance Planner is a personal finance management application that helps you track 
-                income, expenses, create budgets, and manage financial goals. The service is provided 
-                "as is" without warranty of any kind.
+                 MCC Finance Planner is a personal finance management application that helps you track 
+                 income, expenses, create budgets, and manage financial goals. The service is provided 
+                &quot;as is&quot; without warranty of any kind.
               </p>
               
               <h3>User Responsibilities</h3>

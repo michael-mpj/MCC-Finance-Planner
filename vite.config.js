@@ -1,13 +1,17 @@
 /// <reference types="vitest" />
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import babelPlugin from "@rolldown/plugin-babel";
 import path from "path";
 
-// ✅ Vite config for React + Bootstrap (Web-only for Vercel deployment)
 export default defineConfig({
   plugins: [
+    babelPlugin({
+      babelOptions: {
+        plugins: ["babel-plugin-react-compiler"],
+      },
+    }),
     react({
-      // Enable JSX for .js files too
       include: "**/*.{jsx,js}",
     }),
   ],

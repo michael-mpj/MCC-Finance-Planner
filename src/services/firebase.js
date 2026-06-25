@@ -1,4 +1,4 @@
-import { initializeApp, getApps, getApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app";
 import {
   getAuth,
   GoogleAuthProvider,
@@ -13,12 +13,9 @@ import {
   collection,
   doc,
   setDoc,
-  getDoc,
   getDocs,
-  updateDoc,
   deleteDoc,
   query,
-  where,
   orderBy,
   onSnapshot,
   serverTimestamp,

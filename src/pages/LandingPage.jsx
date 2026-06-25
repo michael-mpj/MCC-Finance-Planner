@@ -295,7 +295,7 @@ const LandingPage = () => {
                   <div className="text-center">
                     <span style={{ fontSize: '2.5rem' }}>🎨</span>
                     <h5 className="mt-2">Beautiful UI</h5>
-                    <p className="small">Clean, modern interface that's joy to use daily</p>
+                    <p className="small">Clean, modern interface that&apos;s joy to use daily</p>
                   </div>
                 </div>
                 <div className="col-sm-6">
@@ -312,15 +312,15 @@ const LandingPage = () => {
               <div className="bg-white text-dark rounded p-4 shadow">
                 <h5 className="fw-bold">What Users Say</h5>
                 <div className="testimonial mb-3">
-                  <p className="fst-italic">"Finally, a finance app that doesn't feel overwhelming. The clean interface helps me actually stay on top of my expenses!"</p>
+                   <p className="fst-italic">&quot;Finally, a finance app that doesn&apos;t feel overwhelming. The clean interface helps me actually stay on top of my expenses!&quot;</p>
                   <small className="text-muted">— Sarah M., Freelancer</small>
                 </div>
                 <div className="testimonial mb-3">
-                  <p className="fst-italic">"Love the cross-platform support. I can track expenses on my laptop and check balances on my phone seamlessly."</p>
+                   <p className="fst-italic">&quot;Love the cross-platform support. I can track expenses on my laptop and check balances on my phone seamlessly.&quot;</p>
                   <small className="text-muted">— David L., Software Engineer</small>
                 </div>
                 <div className="testimonial">
-                  <p className="fst-italic">"The Excel import feature saved me hours when migrating from my old spreadsheet system."</p>
+                   <p className="fst-italic">&quot;The Excel import feature saved me hours when migrating from my old spreadsheet system.&quot;</p>
                   <small className="text-muted">— Emma R., Small Business Owner</small>
                 </div>
               </div>

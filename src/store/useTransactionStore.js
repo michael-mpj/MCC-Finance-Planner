@@ -185,13 +185,12 @@ export const useTransactionStore = create(
                   }
                   break;
                 case "clear_all":
-                  console.log("Clear all operation - implement if needed");
                   break;
                 default:
-                  console.warn("Unknown sync operation:", operation);
+                  break;
               }
-            } catch (error) {
-              console.error("Firebase sync error:", error);
+            } catch {
+              set({ syncToFirebase: syncFunction });
             }
           };
 
@@ -257,11 +256,11 @@ export const useTransactionStore = create(
 useTransactionStore.subscribe(
   (state) => state.transactions,
   (transactions, previousTransactions) => {
-    if (process.env.NODE_ENV === "development" && transactions.length !== previousTransactions.length) {
-      console.log(`Transactions updated: ${transactions.length} total (was ${previousTransactions.length})`);
+    if (import.meta.env.DEV && transactions.length !== previousTransactions.length) {
+      // transactions count changed
     }
 
-    window.dispatchEvent(new CustomEvent("transactionsUpdated", {
+    globalThis.dispatchEvent(new CustomEvent("transactionsUpdated", {
       detail: {
         transactions,
         previousCount: previousTransactions.length,

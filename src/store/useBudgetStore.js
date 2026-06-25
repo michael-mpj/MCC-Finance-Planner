@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 
 export const useBudgetStore = create(
   persist(
-    (set, get) => ({
+    (set) => ({
       budgets: [],
       
       addBudget: (budget) =>

@@ -40,7 +40,7 @@ const PrivacyPolicy = () => {
               
               <h3>Data Security</h3>
               <p>
-                Your financial data is encrypted both in transit and at rest. We use Firebase's secure infrastructure 
+                 Your financial data is encrypted both in transit and at rest. We use Firebase&apos;s secure infrastructure 
                 with industry-standard security measures. Your data is isolated per user account and never shared 
                 with third parties.
               </p>

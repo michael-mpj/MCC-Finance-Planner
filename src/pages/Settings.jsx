@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { useTransactionStore } from "../store/useTransactionStore";
 import { useBudgetStore } from "../store/useBudgetStore";
@@ -19,10 +19,6 @@ export default function Settings() {
 
   const [settings, setSettings] = useState(() => storage.getSettings());
   const [showConfirmClear, setShowConfirmClear] = useState(false);
-
-  useEffect(() => {
-    setSettings(storage.getSettings());
-  }, []);
 
   const updateSetting = (key, value) => {
     const updated = { ...settings, [key]: value };
@@ -54,10 +50,6 @@ export default function Settings() {
     a.download = `mcc-finance-backup-${new Date().toISOString().split("T")[0]}.json`;
     a.click();
     URL.revokeObjectURL(url);
-  };
-
-  const formatCurrency = (amount) => {
-    return new Intl.NumberFormat("en-US", { style: "currency", currency: settings.currency || "USD" }).format(amount);
   };
 
   return (

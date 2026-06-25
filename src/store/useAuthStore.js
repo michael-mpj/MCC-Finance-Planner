@@ -90,7 +90,7 @@ const useAuthStore = create(
               });
             }
           }
-        } catch (error) {
+        } catch {
           const storedTransactions = localStorage.getItem('finance-transactions');
           const storedBudgets = localStorage.getItem('finance-budgets');
           const hasUserData = storedTransactions || storedBudgets;
@@ -138,8 +138,8 @@ const useAuthStore = create(
             firebaseReady: true,
           });
           return { success: true, user: normalizedUser };
-        } catch (error) {
-          const errorMessage = error.message || 'Google sign-in failed';
+        } catch {
+          const errorMessage = 'Google sign-in failed';
           set({
             error: errorMessage,
             authError: errorMessage,
@@ -172,8 +172,8 @@ const useAuthStore = create(
             firebaseReady: true,
           });
           return { success: true, user: normalizedUser };
-        } catch (error) {
-          const errorMessage = error.message || 'Email sign-in failed';
+        } catch {
+          const errorMessage = 'Email sign-in failed';
           set({
             error: errorMessage,
             authError: errorMessage,
@@ -217,7 +217,7 @@ const useAuthStore = create(
             firebaseReady: true,
           });
           return { success: true, user: normalizedUser };
-        } catch (error) {
+        } catch {
           const localUser = {
             id: 'local-user',
             name: 'Local User',

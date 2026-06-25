@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { storage } from "../services/localStorage";
 
 const GOALS_STORAGE_KEY = "finance-goals";
 

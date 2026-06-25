@@ -118,11 +118,12 @@ export const importTransactions = async (file) => {
       }
     });
 
+    const errorSuffix = errors.length > 0 ? ` with ${errors.length} errors` : '';
     return {
       success: true,
       data: transactions,
       errors: errors,
-      message: `Imported ${transactions.length} transactions${errors.length > 0 ? ` with ${errors.length} errors` : ''}`
+      message: `Imported ${transactions.length} transactions${errorSuffix}`
     };
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -242,7 +243,6 @@ export const exportFinancialReport = async (data, filename = 'financial-report.x
     
     return { success: true, message: 'Financial report exported successfully' };
   } catch (error) {
-    console.error('Report export failed:', error);
     return { success: false, message: 'Report export failed: ' + error.message };
   }
 };
@@ -306,7 +306,6 @@ export const exportYearlyReport = async (transactions, year = new Date().getFull
 
     return { success: true, message: `Exported yearly report for ${year}` };
   } catch (error) {
-    console.error('Yearly export failed:', error);
     return { success: false, message: 'Yearly export failed: ' + error.message };
   }
 };

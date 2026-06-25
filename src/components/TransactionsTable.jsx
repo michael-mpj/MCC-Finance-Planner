@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { useTransactionStore } from "../store/useTransactionStore";
 
 const ITEMS_PER_PAGE = 10;
@@ -25,7 +25,7 @@ const TransactionsTable = () => {
 
   const categories = useMemo(() => {
     const cats = [...new Set(transactions.map(tx => tx.category))];
-    return cats.sort();
+    return cats.sort((a, b) => a.localeCompare(b));
   }, [transactions]);
 
   const availableYears = useMemo(() => {
@@ -100,7 +100,7 @@ const TransactionsTable = () => {
     });
 
     return filtered;
-  }, [transactions, sortField, sortDirection, filterType, filterCategory, searchTerm, periodFilter, selectedYear]);
+  }, [transactions, sortField, sortDirection, filterType, filterCategory, searchTerm, periodFilter, selectedYear, selectedMonth]);
 
   const totalPages = Math.max(1, Math.ceil(filteredTransactions.length / ITEMS_PER_PAGE));
   const safePage = Math.min(currentPage, totalPages);
@@ -155,7 +155,7 @@ const TransactionsTable = () => {
   };
 
   const handleDelete = (id) => {
-    if (window.confirm('Are you sure you want to delete this transaction?')) {
+    if (globalThis.confirm('Are you sure you want to delete this transaction?')) {
       deleteTransaction(id);
     }
   };
@@ -259,8 +259,9 @@ const TransactionsTable = () => {
         <div className="card-body">
           <div className="row g-3">
             <div className="col-md-3">
-              <label className="form-label">Period</label>
+              <label htmlFor="period-filter" className="form-label">Period</label>
               <select
+                id="period-filter"
                 className="form-select"
                 value={periodFilter}
                 onChange={(e) => handlePeriodChange(e.target.value)}
@@ -273,8 +274,9 @@ const TransactionsTable = () => {
             </div>
             {periodFilter === 'year' && (
               <div className="col-md-3">
-                <label className="form-label">Year</label>
+                <label htmlFor="year-filter" className="form-label">Year</label>
                 <select
+                  id="year-filter"
                   className="form-select"
                   value={selectedYear}
                   onChange={(e) => handleYearChange(e.target.value)}
@@ -290,12 +292,13 @@ const TransactionsTable = () => {
               </div>
             )}
             <div className="col-md-3">
-              <label className="form-label">Search</label>
+              <label htmlFor="search-filter" className="form-label">Search</label>
               <div className="input-group">
                 <span className="input-group-text">
                   <i className="fas fa-search"></i>
                 </span>
                 <input
+                  id="search-filter"
                   type="text"
                   className="form-control"
                   placeholder="Search transactions..."
@@ -305,8 +308,9 @@ const TransactionsTable = () => {
               </div>
             </div>
             <div className="col-md-3">
-              <label className="form-label">Type</label>
+              <label htmlFor="type-filter" className="form-label">Type</label>
               <select
+                id="type-filter"
                 className="form-select"
                 value={filterType}
                 onChange={(e) => { setFilterType(e.target.value); setCurrentPage(1); }}
@@ -317,8 +321,9 @@ const TransactionsTable = () => {
               </select>
             </div>
             <div className="col-md-3">
-              <label className="form-label">Category</label>
+              <label htmlFor="category-filter" className="form-label">Category</label>
               <select
+                id="category-filter"
                 className="form-select"
                 value={filterCategory}
                 onChange={(e) => { setFilterCategory(e.target.value); setCurrentPage(1); }}
@@ -476,7 +481,7 @@ const TransactionsTable = () => {
                               step="0.01"
                               className="form-control form-control-sm text-end"
                               value={editForm.amount}
-                              onChange={(e) => setEditForm({...editForm, amount: parseFloat(e.target.value)})}
+                              onChange={(e) => setEditForm({...editForm, amount: Number.parseFloat(e.target.value)})}
                             />
                           </td>
                           <td>

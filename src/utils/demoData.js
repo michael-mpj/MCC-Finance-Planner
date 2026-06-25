@@ -1,6 +1,7 @@
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import demoData from "../data/demoTransactions.json";
+import demoDataRaw from "../data/demoTransactions.json?raw";
+const demoData = JSON.parse(demoDataRaw);
 
 export const getDemoTransactions = () => {
   return demoData.map((tx) => ({
@@ -17,11 +18,15 @@ export const exportDemoXlsx = async () => {
     const sheet = workbook.addWorksheet("Demo Transactions");
 
     const headerRow = sheet.addRow([
+      "ID",
       "Date",
+      "Title",
+      "Description",
       "Category",
       "Type",
       "Amount",
-      "Note",
+      "Created At",
+      "Updated At",
       "Tags",
     ]);
     headerRow.font = { bold: true };
@@ -33,11 +38,15 @@ export const exportDemoXlsx = async () => {
 
     demoData.forEach((tx) => {
       const row = sheet.addRow([
+        tx.id || "",
         tx.date || "",
+        tx.title || "",
+        tx.description || "",
         tx.category || "",
         tx.type || "",
         Number(tx.amount) || 0,
-        tx.note || "",
+        tx.createdAt || "",
+        tx.updatedAt || "",
         Array.isArray(tx.tags) ? tx.tags.join(", ") : "",
       ]);
       row.getCell(4).numFmt = "$#,##0.00";

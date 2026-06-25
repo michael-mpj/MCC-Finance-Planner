@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useTransactionStore } from "../store/useTransactionStore";
 import { useBudgetStore } from "../store/useBudgetStore";
 import { exportTransactions, importTransactions, exportBudgets, exportFinancialReport, exportYearlyReport } from "../utils/excelUtils";
@@ -239,7 +239,7 @@ export default function ImportExport() {
                           <li>Excel file (.xlsx or .xls)</li>
                           <li>First row should be headers</li>
                           <li>Required columns: Date, Category, Type, Amount</li>
-                          <li>Type must be 'income' or 'expense'</li>
+                           <li>Type must be &apos;income&apos; or &apos;expense&apos;</li>
                         </ul>
                       </div>
                     </div>

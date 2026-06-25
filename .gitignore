@@ -4,3 +4,5 @@
 .github/instructions/codacy.instructions.md
 node_modules
 .vercel
+.env
+.env.local

@@ -1,25 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useTransactionStore } from "../store/useTransactionStore";
+import React, { useState } from "react";
 import TransactionsTable from "../components/TransactionsTable";
 import AddTransactionModal from "../components/AddTransactionModal";
 
 export default function Transactions() {
-  const { transactions } = useTransactionStore();
   const [showAddModal, setShowAddModal] = useState(false);
-  const [lastUpdate, setLastUpdate] = useState(Date.now());
-
-  // Update timestamp when transactions change to demonstrate real-time updates
-  useEffect(() => {
-    setLastUpdate(Date.now());
-  }, [transactions]);
-
-  const formatLastUpdate = () => {
-    return new Date(lastUpdate).toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit'
-    });
-  };
 
   return (
     <div className="container-fluid mt-4">
@@ -34,10 +18,6 @@ export default function Transactions() {
               </h2>
               <p className="text-muted mb-0">
                 Manage your income and expenses with real-time updates
-                <span className="ms-2 badge bg-light text-dark">
-                  <i className="fas fa-sync-alt me-1"></i>
-                  Last updated: {formatLastUpdate()}
-                </span>
               </p>
             </div>
             <div className="d-flex gap-2">
